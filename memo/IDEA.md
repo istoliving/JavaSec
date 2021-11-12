@@ -25,3 +25,18 @@
 
 ![image](https://user-images.githubusercontent.com/55024146/141257755-9e6ddd31-1248-4d3f-bb6e-5b05fda8d6e2.png)
 
+- 03 pom.xml 导入本地依赖包
+
+```
+<!-- spring MVC依赖包 -->
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-webmvc</artifactId>
+  <version>5.2.1.RELEASE</version>
+  <scope>system</scope>
+  <systemPath>${project.basedir}/../lib/spring-webmvc-5.2.1.RELEASE.jar</systemPath>
+</dependency>
+```
+终于不报错了！！！
+
+![image](https://user-images.githubusercontent.com/55024146/141419472-0cac0cda-b04d-47d2-9fef-ff8de678ff6a.png)
