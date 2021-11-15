@@ -1,4 +1,4 @@
-**操作备忘**:
+**报错备忘**:
 - 01 There was an unexpected error (type=Internal Server Error, status=500).Circular view path [index]: would dispatch back to the current handler URL:
 
 ![image](https://user-images.githubusercontent.com/55024146/141726007-667be23a-a506-4ef5-91cb-c20eede21173.png)
