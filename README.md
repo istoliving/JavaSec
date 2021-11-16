@@ -5,12 +5,13 @@
 ### TODO 
 — 任务驱动式学习路线
 #### 中间件 / 框架
+- [ ] Hibernate
 - [ ] JBoss
 - [ ] Jetty
+- [ ] MyBatis
 - [ ] Resin
-
 - [ ] Shiro
-
+- [ ] Struts2
 - [x] Spring 
 
     - [x] 内存马 (controller/interceptor)
@@ -27,7 +28,6 @@
 
 #### 组件 / 库 / 类库
 - [ ] Fastjson
-- [ ] Shiro
 - [ ] XMLDecoder
 - [ ] XStream
 - [ ] SnakeYAML
