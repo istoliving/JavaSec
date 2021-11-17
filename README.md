@@ -9,6 +9,7 @@
 - 阅读xxx工具的源码
 - 开发xxx功能的工具
 ### 中间件 / 框架
+- [ ] Hessian
 - [ ] Hibernate
 - [ ] JBoss
 - [ ] Jetty
