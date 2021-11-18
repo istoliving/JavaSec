@@ -16,6 +16,7 @@
 - [ ] MyBatis
 - [ ] Resin
 - [ ] Shiro
+    - [x] 漏洞利用 修改key 
 - [ ] Struts2
 - [x] Spring 
 
