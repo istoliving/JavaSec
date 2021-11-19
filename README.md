@@ -16,6 +16,7 @@
 - [ ] MyBatis
 - [ ] Resin
     - [x] resin4 内存马(filter/servlet)
+    - [x] resin3 内存马(filter)
 - [ ] Shiro
     - [x] 漏洞利用 修改key 
 - [ ] Struts2
