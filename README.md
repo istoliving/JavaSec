@@ -30,8 +30,7 @@
 
    
 - [ ] Weblogic 
-
-    - [ ] 内存马 (filter/servlet/listener)
+    - [x] 内存马 (filter) 12.1.3.0.0
 - [ ] WebSphere
 
 ### 组件 / 库 / 类库
