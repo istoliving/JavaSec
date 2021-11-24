@@ -32,6 +32,7 @@
 - [ ] Weblogic 
     - [x] 内存马 (filter add/remove) 12.1.3.0.0
     - [x] 内存马 (listener add/remove) 12.1.3.0.0
+    - [x] 内存马 (servlet add/remove) 12.1.3.0.0
 - [ ] WebSphere
 
 ### 组件 / 库 / 类库
