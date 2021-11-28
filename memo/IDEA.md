@@ -43,3 +43,11 @@
 
 ![image](https://user-images.githubusercontent.com/55024146/143774426-ea2cd01e-b48a-4797-9a31-9bcd9b6d3f12.png)
 
+- 05 [RMI TCP Connection(3)-127.0.0.1] org.apache.catalina.core.StandardContext.filterStart Exception starting filter [struts2]
+
+![image](https://user-images.githubusercontent.com/55024146/143776920-3e2a5c50-c205-4e01-9596-9c2bc0826dc8.png)
+
+解决姿势
+> 将需要导入的jar包放入项目WEB-INF下的lib目录,然后右键Add as Library即可
+
+![image](https://user-images.githubusercontent.com/55024146/143777358-530a479f-4b53-4dfe-90a1-c7a691b0a6c4.png)
