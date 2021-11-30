@@ -51,3 +51,16 @@
 > 将需要导入的jar包放入项目WEB-INF下的lib目录,然后右键Add as Library即可
 
 ![image](https://user-images.githubusercontent.com/55024146/143777358-530a479f-4b53-4dfe-90a1-c7a691b0a6c4.png)
+
+- 06 weblogic 10.3.6.0 The error is weblogic.descriptor.DescriptorException: Unmarshaller failed 
+
+解决姿势
+> web.xml中web-app版本的原因，改回2.4
+```
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	      xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	      http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	      version="2.4">
+</web-app>
+```
