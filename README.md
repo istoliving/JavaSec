@@ -14,27 +14,19 @@
 - [ ] JBoss
 - [ ] Jetty
 - [ ] MyBatis
-- [ ] Resin
-    - [x] resin4 内存马(filter/servlet)
-    - [x] resin3 内存马(filter)
+- [x] Resin
+    - [x] [内存马(filter/servlet)](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/resin/README.md)
 - [ ] Shiro
     - [x] 漏洞利用 修改key 
 - [ ] Struts2
 - [x] Spring 
-
     - [x] 内存马 (controller/interceptor)
-
+    - [ ] 漏洞分析()
 - [ ] Tomcat 
-
-    - [x] 内存马 (filter/servlet/listener/value)
-
-   
-- [x] [Weblogic](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/weblogic/README.md) 
-    - [x] 内存马 (filter add/remove)
-    - [x] 内存马 (listener add/remove)
-    - [x] 内存马 (servlet add/remove)
-    - [x] 水坑部署模板-mitm_inject.jsp  
-        - 功能：利用水坑截取目标的用户名 & 密码
+    - [x] 内存马 (filter/servlet/listener/value) 
+- [x] Weblogic
+    - [x] [内存马 (filter/listener/servlet)](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/weblogic/README.md)
+    - [ ] 漏洞分析
 - [ ] WebSphere
 
 ### 组件 / 库 / 类库
