@@ -15,17 +15,17 @@
 - [ ] Jetty
 - [ ] MyBatis
 - [x] Resin
-    - [x] [内存马(filter/servlet)](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/resin/README.md)
+    - [x] [内存马(filter/servlet)](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/resin/)
 - [ ] Shiro
     - [x] 漏洞利用 修改key 
 - [ ] Struts2
 - [x] Spring 
     - [x] 内存马 (controller/interceptor)
-    - [ ] 漏洞分析()
+    - [ ] 漏洞分析
 - [ ] Tomcat 
     - [x] 内存马 (filter/servlet/listener/value) 
 - [x] Weblogic
-    - [x] [内存马 (filter/listener/servlet)](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/weblogic/README.md)
+    - [x] [内存马 (filter/listener/servlet)](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/weblogic/)
     - [ ] 漏洞分析
 - [ ] WebSphere
 
