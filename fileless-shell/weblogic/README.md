@@ -89,7 +89,18 @@ response.getWriter().write("Servlet Injected Successfully!!!");
 
 ### 动态注册Filter内存马  
 
+#### 10.3.6.0
+
+测试效果
+
+![image](https://user-images.githubusercontent.com/55024146/144036760-4c29b12c-2b28-4270-a82b-7c812e2f7922.png)
 
 
+
+#### 12.1.3.0.0
+
+测试效果
+
+![image](https://user-images.githubusercontent.com/55024146/144036974-997a4c40-c302-4c21-8770-e8581b6a9104.png)
 
 
