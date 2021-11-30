@@ -1,13 +1,13 @@
 **目录**
 - 获取上下文 WebAppServletContext
 - 动态注册Servlet内存马  
-- 动态注册Listener 内存马
-- 动态注册Filter t内存马 
+- 动态注册Listener内存马
+- 动态注册Filter内存马 
 
 > 已测试10.3.6.0、12.1.3.0.0
 
 
-### 上下文 WebAppServletContext
+### 获取上下文 WebAppServletContext
 
 - WebAppServletContext
 
@@ -35,7 +35,7 @@ try {
 }
 ```
 
-### 内存马 Servlet
+### 动态注册Servlet内存马  
 
 跟了一下从web.xml添加servet的流程，可以使用registerServlet方法注册Servlet，不过不同版本的weblogic对该方法有不同实现:
 
@@ -84,6 +84,10 @@ response.getWriter().write("Servlet Injected Successfully!!!");
 
 
 
+### 动态注册Listener内存马  
+
+
+### 动态注册Filter内存马  
 
 
 
