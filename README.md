@@ -16,6 +16,7 @@
 - [ ] MyBatis
 - [x] Resin
     - [x] [内存马(filter/servlet)](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/resin/)
+    - [x] [漏洞分析](https://github.com/pen4uin/JavaSec/tree/main/vulnerability-analysis/resin)
 - [ ] Shiro
     - [x] 漏洞利用 修改key 
 - [ ] Struts2
