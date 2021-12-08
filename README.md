@@ -42,5 +42,3 @@
 希望能坚持更新到至少10+案例 👨‍💻
 ```
 - [01 OFCMS](https://github.com/pen4uin/JavaSec/tree/main/code-audit/01_ofcms)
-    - [x] CVE-2019-9615 后台 SQL注入
-    - [x] CVE-2019-9610 后台 目录遍历
