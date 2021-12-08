@@ -51,9 +51,6 @@
 
   ![Untitled](ofcms.assets/Untitled%205.png)
 
-- 初始化数据库
-
-  ![Untitled](ofcms.assets/Untitled%206.png)
 
 配置中间件-Tomcat
 
@@ -213,5 +210,5 @@ payload
 
 漏洞效果
 
-![Untitled](ofcms.assets/Untitled%2028.png)
+![Untitled](ofcms.assets/Untitled%2028-1.png)
 
