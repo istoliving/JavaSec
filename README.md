@@ -32,6 +32,7 @@
 
 ### 组件 / 库 / 类库
 - [ ] Fastjson
+- [x] [Log4j2](https://github.com/pen4uin/JavaSec/tree/main/vulnerability-analysis/log4j2)
 - [ ] XMLDecoder
 - [ ] XStream
 - [ ] SnakeYAML
