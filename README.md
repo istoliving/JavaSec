@@ -20,6 +20,7 @@
 - [ ] Shiro
     - [x] 漏洞利用 修改key 
 - [ ] Struts2
+    - [x] [Apache Struts2 RCE via Log4j2 CVE-2021-44228](https://github.com/pen4uin/JavaSec/tree/main/vulnerability-analysis/struts2)
 - [x] Spring 
     - [x] 内存马 (controller/interceptor)
     - [ ] 漏洞分析
