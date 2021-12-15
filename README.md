@@ -33,6 +33,7 @@
 
 ### 组件 / 库 / 类库
 - [ ] Fastjson
+- [x] [Groovy](https://github.com/pen4uin/JavaSec/blob/main/post-exploitation/deserialization/jar_groovy.md)
 - [x] [Log4j2](https://github.com/pen4uin/JavaSec/tree/main/vulnerability-analysis/log4j2)
 - [ ] XMLDecoder
 - [ ] XStream
