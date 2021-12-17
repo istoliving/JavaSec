@@ -1,4 +1,3 @@
-
 # java.lang 
 
 ## Class
@@ -52,13 +51,13 @@
 
 > Class.forName取得类的引用,并进行初始化
 >
-> > ![image-20211107210506565](package_java.lang.assets/image-20211107210506565.png)
+> > ![image-20211107210506565](jar_rt.assets/image-20211107210506565.png)
 
 
 
 2、Object  getClass()
 
-> ![image-20211107211208740](package_java.lang.assets/image-20211107211208740.png)
+> ![image-20211107211208740](jar_rt.assets/image-20211107211208740.png)
 
 
 
@@ -66,7 +65,7 @@
 
 > 当使用.class来创建Class对象的引用时，不会自动地初始化该Class对象
 >
-> > ![image-20211107213724715](package_java.lang.assets/image-20211107213724715.png)
+> > ![image-20211107213724715](jar_rt.assets/image-20211107213724715.png)
 
 
 
@@ -182,7 +181,7 @@ ClassLoader loader = new NetworkClassLoader(host, port);
 
 类加载器委派关系
 
-![img](package_java.lang.assets/20210108151613-642298d0-5181-1.png)
+![img](jar_rt.assets/20210108151613-642298d0-5181-1.png)
 
 如上图类加载器层次关系，我们可以将其称为类加载器的双亲委派模型。但注意的是，他们之间并不是"继承"体系，而是委派体系。当上述特定的类加载器接到加载类的请求时，首先会先将任务委托给父类加载器，接着请求父类加载这个类，当父类加载器无法加载时（其目录搜素范围没有找到所需要的类时），子类加载器才会进行加载使用。这样可以避免有些类被重复加载。
 
@@ -226,7 +225,7 @@ ClassLoader loader = new NetworkClassLoader(host, port);
 
 Object类是Java中其他所有类的祖先，没有Object类Java面向对象无从谈起。
 
-![image-20211107215905933](package_java.lang.assets/image-20211107215905933.png)
+![image-20211107215905933](jar_rt.assets/image-20211107215905933.png)
 
 ### 常用方法
 
@@ -240,11 +239,7 @@ equals() 方法比较两个对象，是判断两个对象引用指向的是同�
 注意：如果子类重写了 equals() 方法，就需要重写 hashCode() 方法，比如 String 类就重写了 equals() 方法，同时也重写了 hashCode() 方法。
 ```
 
-
-
-
-
-![image-20211107221734276](package_java.lang.assets/image-20211107221734276.png)
+![image-20211107221734276](jar_rt.assets/image-20211107221734276.png)
 
 #### hashcode()
 
@@ -252,15 +247,13 @@ equals() 方法比较两个对象，是判断两个对象引用指向的是同�
 
 - 返回一个int型整数，用于确定该对象在哈希表中的索引位置
 
-
-
-![image-20211107222131516](package_java.lang.assets/image-20211107222131516.png)
+![image-20211107222131516](jar_rt.assets/image-20211107222131516.png)
 
 #### getClass()
 
 - 获取对象的运行时对象的类。
 
-![image-20211107221303978](package_java.lang.assets/image-20211107221303978.png)
+![image-20211107221303978](jar_rt.assets/image-20211107221303978.png)
 
 #### toString()
 
@@ -269,7 +262,7 @@ equals() 方法比较两个对象，是判断两个对象引用指向的是同�
 - 默认返回格式
   - 对象的 class 名称 + @ + hashCode 的十六进制字符串。
 
-![image-20211107222002432](package_java.lang.assets/image-20211107222002432.png)
+![image-20211107222002432](jar_rt.assets/image-20211107222002432.png)
 
 
 
@@ -305,7 +298,7 @@ equals()方法比较字符串对象中的字符
 
 
 
-![image-20211107223406471](package_java.lang.assets/image-20211107223406471.png)
+![image-20211107223406471](jar_rt.assets/image-20211107223406471.png)
 
 ### 常用方法
 
@@ -317,7 +310,7 @@ equals()方法比较字符串对象中的字符
 
 4、contains() 判断指定的内容是否存在
 
-![image-20211107224558144](package_java.lang.assets/image-20211107224558144.png)
+![image-20211107224558144](jar_rt.assets/image-20211107224558144.png)
 
 5、indexOf() 从前向后查找指定字符串的位置，找不到返回-1
 
@@ -329,7 +322,7 @@ equals()方法比较字符串对象中的字符
 
 9、replaceFirst() 替换首个满足条件的内容
 
-![image-20211107225941860](package_java.lang.assets/image-20211107225941860.png)
+![image-20211107225941860](jar_rt.assets/image-20211107225941860.png)
 
 10、substring()  根据给定的起始索引（包括）和 结束索引（不包括）返回子字符串，索引从 0 开始
 
@@ -337,13 +330,13 @@ equals()方法比较字符串对象中的字符
 
 12、concat() 字符串拼接
 
-![image-20211107230639549](package_java.lang.assets/image-20211107230639549.png)
+![image-20211107230639549](jar_rt.assets/image-20211107230639549.png)
 
 13、trim() 去掉字符串中左右两边的空格，中间空格保留
 
 14、length() 返回字符串长度
 
-15、isEmpty() 判断字符串是否为空![image-20211107231049845](package_java.lang.assets/image-20211107231049845.png)
+15、isEmpty() 判断字符串是否为空![image-20211107231049845](jar_rt.assets/image-20211107231049845.png)
 
 
 
@@ -368,7 +361,7 @@ StringBuffer sb = new StringBuffer();
 4、insert(int offset, int i)  将 int 参数的字符串表示形式插入此序列中。
 5、replace(int start, int end, String str)  使用给定 String 中的字符替换此序列的子字符串中的字符
 
-![image-20211107232443602](package_java.lang.assets/image-20211107232443602.png)
+![image-20211107232443602](jar_rt.assets/image-20211107232443602.png)
 
 ## StringBuilder
 
@@ -386,7 +379,7 @@ StringBuffer 是 StringBuilder 的前身，在早期的 Java 版本中应用非�
 4、insert(int offset, int i)  将 int 参数的字符串表示形式插入此序列中。
 5、replace(int start, int end, String str)  使用给定 String 中的字符替换此序列的子字符串中的字符
 
-![image-20211107232914414](package_java.lang.assets/image-20211107232914414.png)
+![image-20211107232914414](jar_rt.assets/image-20211107232914414.png)
 
 
 
@@ -394,7 +387,7 @@ StringBuffer 是 StringBuilder 的前身，在早期的 Java 版本中应用非�
 
 
 
-![image-20211107233206242](package_java.lang.assets/image-20211107233206242.png)
+![image-20211107233206242](jar_rt.assets/image-20211107233206242.png)
 
 ### 常用方法
 
@@ -404,17 +397,17 @@ StringBuffer 是 StringBuilder 的前身，在早期的 Java 版本中应用非�
 
 - 获取指定键描述的系统属性
 
-![image-20211107233849615](package_java.lang.assets/image-20211107233849615.png)
+![image-20211107233849615](jar_rt.assets/image-20211107233849615.png)
 
 
 
-![image-20211107234215114](package_java.lang.assets/image-20211107234215114.png)
+![image-20211107234215114](jar_rt.assets/image-20211107234215114.png)
 
 #### getProperties()	
 
 - 取得当前的系统属性
 
-![image-20211107234754845](package_java.lang.assets/image-20211107234754845.png)
+![image-20211107234754845](jar_rt.assets/image-20211107234754845.png)
 
 
 
@@ -424,7 +417,7 @@ StringBuffer 是 StringBuilder 的前身，在早期的 Java 版本中应用非�
 
 
 
-![image-20211107235030577](package_java.lang.assets/image-20211107235030577.png)
+![image-20211107235030577](jar_rt.assets/image-20211107235030577.png)
 
 ### 常用方法
 
@@ -434,15 +427,15 @@ StringBuffer 是 StringBuilder 的前身，在早期的 Java 版本中应用非�
 
 3、native 方法
 
-![image-20211107235428913](package_java.lang.assets/image-20211107235428913.png)
+![image-20211107235428913](jar_rt.assets/image-20211107235428913.png)
 
-![image-20211108000114413](package_java.lang.assets/image-20211108000114413.png)
+![image-20211108000114413](jar_rt.assets/image-20211108000114413.png)
 
 #### exec()
 
 - 执行本地程序，比如在windows平台下执行exe程序。
 
-![image-20211108000249405](package_java.lang.assets/image-20211108000249405.png)
+![image-20211108000249405](jar_rt.assets/image-20211108000249405.png)
 
 
 
@@ -466,7 +459,7 @@ public class runTime {
 
 
 
-![image-20211126115612941](jar_rt.assets/image-20211126115612941.png)
+![image-20211126115612941](jar_rt.assets/image-20211126115612941-16397529804461.png)
 
 
 
@@ -482,11 +475,11 @@ msf恶意dll生成（弹计算器）
 > msfvenom -p windows/x64/exec --platform win -a x64 CMD=calc.exe EXITFUNC=thread -f dll> calc.dll
 > ```
 
-![image-20211108002026565](package_java.lang.assets/image-20211108002026565.png)
+![image-20211108002026565](jar_rt.assets/image-20211108002026565.png)
 
 
 
-![image-20211108001936820](package_java.lang.assets/image-20211108001936820.png)
+![image-20211108001936820](jar_rt.assets/image-20211108001936820.png)
 
 
 
@@ -504,13 +497,13 @@ public class runTime {
 }
 ```
 
-![image-20211126104852071](jar_rt.assets/image-20211126104852071.png)
+![image-20211126104852071](jar_rt.assets/image-20211126104852071-16397529862282.png)
 
 为什么要通过`getRuntime()`来调用exec，而不是直接实例化Runtime呢？
 
 > Runtime构造方法是私有的所以不能直接实例化，而是通过`getRuntime()`来进行构造，刚好又是静态方法，所以可以直接调用。
 
-![image-20211126105317710](jar_rt.assets/image-20211126105317710.png)
+![image-20211126105317710](jar_rt.assets/image-20211126105317710-16397529877853.png)
 
 除了getRuntime()，还有其他姿势吗？再来一杯？
 
@@ -518,7 +511,7 @@ public class runTime {
 
 - 构造方法 Runtime()
 
-![image-20211126114901490](jar_rt.assets/image-20211126114901490.png)
+![image-20211126114901490](jar_rt.assets/image-20211126114901490-16397529912415.png)
 
 - 反射
 
@@ -528,7 +521,7 @@ public class runTime {
 
   - setAccessible()
 
-    ![image-20211126111739032](jar_rt.assets/image-20211126111739032.png)
+    ![image-20211126111739032](jar_rt.assets/image-20211126111739032-16397529897814.png)
 
 ```java
 import java.io.IOException;
@@ -551,7 +544,7 @@ public class runTime {
 }
 ```
 
-![image-20211126112712622](jar_rt.assets/image-20211126112712622.png)
+![image-20211126112712622](jar_rt.assets/image-20211126112712622-16397529930496.png)
 
 
 
@@ -574,19 +567,19 @@ public class runTime {
 
 
 
-![image-20211126114720559](jar_rt.assets/image-20211126114720559.png)
+![image-20211126114720559](jar_rt.assets/image-20211126114720559-16397529947347.png)
 
 ## Process
 
 Process类是一个抽象类（所有的方法均是抽象的），封装了一个进程（即一个执行程序）。 Process 类提供了执行从进程输入、执行输出到进程、等待进程完成、检查进程的退出状态以及销毁（杀掉）进程的方法。 ProcessBuilder.start() 和 Runtime.exec 方法创建一个本机进程，并返回 Process 子类的一个实例，该实例可用来控制进程并获取相关信息。
 
-![image-20211108002541546](package_java.lang.assets/image-20211108002541546.png)
+![image-20211108002541546](jar_rt.assets/image-20211108002541546.png)
 
 
 
 ## ProcessBuilder
 
-![image-20211108002910884](package_java.lang.assets/image-20211108002910884.png)
+![image-20211108002910884](jar_rt.assets/image-20211108002910884.png)
 
 
 
@@ -596,19 +589,19 @@ Process类是一个抽象类（所有的方法均是抽象的），封装了一�
 
 -  用于将待执行命令及参数传递给它
 
-![image-20211108003801635](package_java.lang.assets/image-20211108003801635.png)
+![image-20211108003801635](jar_rt.assets/image-20211108003801635.png)
 
 #### start() 
 
 - 执行命令并返回一个Process对象，用于获取对执行程序的输入和输出；
 
-![image-20211108003801635](package_java.lang.assets/image-20211108003801635.png)
+![image-20211108003801635](jar_rt.assets/image-20211108003801635-16397530014468.png)
 
 
 
 ## ProcessImpl
 
-![image-20211108004708625](package_java.lang.assets/image-20211108004708625.png)
+![image-20211108004708625](jar_rt.assets/image-20211108004708625.png)
 
 ### start()
 
@@ -622,7 +615,7 @@ Process类是一个抽象类（所有的方法均是抽象的），封装了一�
 
 ProcessImpl类需要值得注意的就是它没有共有构造方法，所以不能直接实例化ProcessImpl类的，虽然不能直接new一个ProcessImpl，但是可以利用反射去调用其方法。
 
-![image-20211108005308253](package_java.lang.assets/image-20211108005308253.png)
+![image-20211108005308253](jar_rt.assets/image-20211108005308253.png)
 
 
 
@@ -725,17 +718,13 @@ readObjectNoData 方法负责在序列化流未将给定类列为被反序列化
 
 **成员方法 readObject()**
 
-![image-20211108101112771](jar_rt.assets/image-20211108101112771.png)
-
-
+![image-20211108101112771](jar_rt.assets/image-20211108101112771-16397530107999.png)
 
 **成员方法 readObject0()**
 
 
 
 ### ObjectOutputStream 类
-
-
 
 ObjectOutputStream 将 Java 对象的原始数据类型和图形写入 OutputStream。 可以使用 ObjectInputStream 读取（重构）对象。 对象的持久存储可以通过对流使用文件来实现。 如果流是网络套接字流，则可以在另一个主机或另一个进程中重构对象。
 只有支持 java.io.Serializable 接口的对象才能写入流。 每个可序列化对象的类都被编码，包括类的类名和签名、对象的字段和数组的值，以及从初始对象引用的任何其他对象的闭包。
@@ -777,15 +766,11 @@ writeObject 方法负责为其特定类写入对象的状态，以便相应的 r
 
 ![image-20211108100259163](jar_rt.assets/image-20211108100259163.png)
 
-
-
-
-
 # java.util
 
 ## Map 接口
 
-![image-20211108011920704](package_java.lang.assets/image-20211108011920704.png)
+![image-20211108011920704](jar_rt.assets/image-20211108011920704.png)
 
 
 
@@ -795,7 +780,7 @@ Map 是将键映射到值的对象。map 不能包含重复的键：每个键最
 
 Java为数据结构中的映射定义了一个接口java.util.Map，此接口主要有四个常用的实现类，分别是HashMap、Hashtable、LinkedHashMap和TreeMap，类继承关系如下图所示：
 
-![img](package_java.lang.assets/f7fe16a2.png)
+![img](jar_rt.assets/f7fe16a2.png)
 
 下面针对各个实现类的特点做一些说明：
 
@@ -821,19 +806,19 @@ https://tech.meituan.com/2016/06/24/java-hashmap.html
 
 ### Hashtable 类
 
-![image-20211108141501295](jar_rt.assets/image-20211108141501295.png)
+![image-20211108141501295](jar_rt.assets/image-20211108141501295-163975303876510.png)
 
 #### 成员方法 readObject()
 
 - 调用 reconstitutionPut()
 
-![image-20211108141851576](jar_rt.assets/image-20211108141851576.png)
+![image-20211108141851576](jar_rt.assets/image-20211108141851576-163975304022411.png)
 
 #### 成员方法 reconstitutionPut()
 
 
 
-![image-20211108142108728](jar_rt.assets/image-20211108142108728.png)
+![image-20211108142108728](jar_rt.assets/image-20211108142108728-163975304199212.png)
 
 
 
@@ -845,15 +830,15 @@ https://tech.meituan.com/2016/06/24/java-hashmap.html
 
 ## Queue 接口
 
-![image-20211108130857349](jar_rt.assets/image-20211108130857349.png)
+![image-20211108130857349](jar_rt.assets/image-20211108130857349-163975304437013.png)
 
 ### AbstractQueue 抽象类
 
-![image-20211108130753392](jar_rt.assets/image-20211108130753392.png)
+![image-20211108130753392](jar_rt.assets/image-20211108130753392-163975304596914.png)
 
 ### PriorityQueue 类
 
-![image-20211108131134376](jar_rt.assets/image-20211108131134376.png)
+![image-20211108131134376](jar_rt.assets/image-20211108131134376-163975304759115.png)
 
 
 
@@ -861,17 +846,17 @@ https://tech.meituan.com/2016/06/24/java-hashmap.html
 
 
 
-![image-20211108131107813](jar_rt.assets/image-20211108131107813.png)
+![image-20211108131107813](jar_rt.assets/image-20211108131107813-163975304907416.png)
 
 
 
 **成员方法 heapify()**
 
-![image-20211108131258637](jar_rt.assets/image-20211108131258637.png)
+![image-20211108131258637](jar_rt.assets/image-20211108131258637-163975305092717.png)
 
 **成员方法 siftDown()**
 
-![image-20211108131326086](jar_rt.assets/image-20211108131326086.png)
+![image-20211108131326086](jar_rt.assets/image-20211108131326086-163975305223518.png)
 
 
 
@@ -879,19 +864,19 @@ https://tech.meituan.com/2016/06/24/java-hashmap.html
 
 - 触发TransformingComparator#compare()
 
-![image-20211108131459618](jar_rt.assets/image-20211108131459618.png)
+![image-20211108131459618](jar_rt.assets/image-20211108131459618-163975305375019.png)
 
 
 
 ## Set 接口
 
-![image-20211108140540323](jar_rt.assets/image-20211108140540323.png)
+![image-20211108140540323](jar_rt.assets/image-20211108140540323-163975305536220.png)
 
 
 
 ### HashSet 类
 
-![image-20211108140620428](jar_rt.assets/image-20211108140620428.png)
+![image-20211108140620428](jar_rt.assets/image-20211108140620428-163975305699821.png)
 
 
 
@@ -899,7 +884,7 @@ https://tech.meituan.com/2016/06/24/java-hashmap.html
 
 - 触发HashMap#put()
 
-![image-20211108140932864](jar_rt.assets/image-20211108140932864.png)
+![image-20211108140932864](jar_rt.assets/image-20211108140932864-163975305872422.png)
 
 
 
@@ -915,19 +900,19 @@ https://tech.meituan.com/2016/06/24/java-hashmap.html
 
 #### 成员方法 newTransformer()
 
-![image-20211108071714507](jar_rt.assets/image-20211108071714507.png)
+![image-20211108071714507](jar_rt.assets/image-20211108071714507-163975306093123.png)
 
 #### 成员方法 getTransletInstance()
 
 - 调用了defineTransletClasses
 
-![image-20211108071609369](jar_rt.assets/image-20211108071609369.png)
+![image-20211108071609369](jar_rt.assets/image-20211108071609369-163975306281324.png)
 
 #### 成员方法 defineTransletClasses()
 
 - 调用了内部类 TransletClassLoader#defineClass()
 
-![image-20211108071453037](jar_rt.assets/image-20211108071453037.png)
+![image-20211108071453037](jar_rt.assets/image-20211108071453037-163975306480925.png)
 
 #### 成员方法 getOutputProperties()
 
@@ -937,7 +922,7 @@ https://tech.meituan.com/2016/06/24/java-hashmap.html
 
 ### TransletClassLoader 内部类 
 
-![image-20211108071024091](jar_rt.assets/image-20211108071024091.png)
+![image-20211108071024091](jar_rt.assets/image-20211108071024091-163975306770326.png)
 
 #### 成员方法 defineClass()
 
