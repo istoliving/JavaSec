@@ -13,6 +13,7 @@
 - [ ] Hibernate
 - [ ] JBoss
 - [ ] Jetty
+    - [x] [内存马(filter)](https://github.com/pen4uin/JavaSec/tree/main/fileless-shell/jetty)  
 - [ ] MyBatis
 - [x] Resin
     - [x] [内存马(filter/servlet)](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/resin/)
