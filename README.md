@@ -3,7 +3,7 @@
 
 **Java基础 / 常见漏洞**
 - Java SE 
-    - [x] [rt.jar](https://github.com/pen4uin/JavaSec/blob/main/basic-knowledge/jar_rt.md)
+    - [x] [rt.jar](https://github.com/pen4uin/JavaSec/blob/main/basic-knowledge/javase/rt.jar/rt.md)
 - Java Vulnerability
     - [ ] 反序列化 Deserialization
     - [ ] 代码执行
@@ -21,29 +21,33 @@
 - Hibernate
 - JBoss
 - Jetty
-    - [x] [内存马(filter)](https://github.com/pen4uin/JavaSec/tree/main/fileless-shell/jetty)  
+    - [x] [无文件马](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/jetty/fileless-shell.md)  
 - MyBatis
 - Resin
-    - [x] [内存马(filter/servlet)](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/resin/)
-    - [x] [漏洞分析](https://github.com/pen4uin/JavaSec/tree/main/vulnerability-analysis/resin)
+    - [x] [无文件马](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/resin/fileless-shell.md)
+    - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/resin/vulnerability-research.md)
 - Shiro
-    - [x] 漏洞利用 修改key 
+    - [ ] 漏洞研究
 - Struts2
-    - [x] [Apache Struts2 RCE via Log4j2 CVE-2021-44228](https://github.com/pen4uin/JavaSec/tree/main/vulnerability-analysis/struts2)
+    - [ ] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/struts2/vulnerability-research.md)
+        - [x] RCE via Log4j2 CVE-2021-44228
 - Spring 
-    - [x] 内存马 (controller/interceptor)
+    - [x] 无文件马
 - Tomcat 
-    - [x] [内存马 (filter/servlet/listener/valve)](https://github.com/pen4uin/JavaSec/tree/main/fileless-shell/tomcat)
+    - [x] [无文件马](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/tomcat/fileless-shell.md)
 - Weblogic
-    - [x] [内存马 (filter/listener/servlet)](https://github.com/pen4uin/JavaSec/blob/main/fileless-shell/weblogic/)
+    - [x] [无文件马](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/weblogic/fileless-shell.md)
+    - [ ] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/weblogic/vulnerability-research.md)
+        - [x] 获取Weblogic console用户名&密码(免解密)
 - WebSphere
 
 **组件 / 库 / 类库**
 - Fastjson
 - Groovy
-    - [x] [deserialization gadget chain](https://github.com/pen4uin/JavaSec/blob/main/post-exploitation/deserialization/jar_groovy.md)
+    - [x] [源码分析](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/groovy/source-analysis.md)
 - Log4j2
-    - [x] [CVE-2021-44228](https://github.com/pen4uin/JavaSec/tree/main/vulnerability-analysis/log4j2)
+    - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/log4j2/vulnerability-research.md)
+        - [x] CVE-2021-44228
 - XMLDecoder
 - XStream
 - SnakeYAML
@@ -51,5 +55,5 @@
 
 **CMS / Other**
 - OFCMS
-    - [x] [漏洞分析](https://github.com/pen4uin/JavaSec/tree/main/code-audit/01_ofcms)
+    - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/ofcms/vulnerability-research.md)
 
