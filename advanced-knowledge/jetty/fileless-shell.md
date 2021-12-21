@@ -3,6 +3,7 @@
 - 无文件马
   - WebAppContext
     - 通过Mbean获取Context
+    - 通过currentThread获取Context
   - Filter
     - 静态添加 Filter(基于web.xml)
     - 动态添加 Filter(基于addFilter API)
@@ -53,7 +54,7 @@ getConext.jsp
 %>
 ```
 
-![image-20211219004050344](jetty.assets/image-20211219004050344.png)
+![image-20211219004050344](fileless-shell.assets/image-20211219004050344.png)
 
 此时需要获取到对应WebAppContext
 
@@ -109,6 +110,19 @@ Object webAppContext = field.get(namedObject.getObject());
 
 ![image-20211219010628756](fileless-shell.assets/image-20211219010628756.png)
 
+#### 通过currentThread获取Context
+
+![image-20211221160813357](fileless-shell.assets/image-20211221160813357.png)
+
+```java
+ClassLoader webAppClassLoader= Thread.currentThread().getContextClassLoader();
+Field _context = webAppClassLoader.getClass().getDeclaredField("_context");
+_context.setAccessible(true);
+Object webAppContext = _context.get(webAppClassLoader);
+Field _servletHandler = webAppContext.getClass().getSuperclass().getDeclaredField("_servletHandler");
+_servletHandler.setAccessible(true);
+Object servletHandler = _servletHandler.get(webAppContext);
+```
 
 
 ### Filter
