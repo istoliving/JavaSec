@@ -8,6 +8,7 @@
     - 静态添加 Filter(基于web.xml)
     - 动态添加 Filter(基于addFilter API)
     - 适配Jetty v6.x/7.x/8.x/9.x
+    - 适配JDNI注入内存马
 
 ## 无文件马
 
@@ -446,4 +447,25 @@ prependFilterMapping.invoke(servletHandler, filterMapping);
 %>
 
 ```
+
+
+#### 适配JNDI注入的利用方式
+
+- 获取线程，遍历所有线程，找到WebAppClassLoader,反射获取context，解决目前网上公开的利用MBean获取context遇到`无法找到org.eclipse.jetty.webapp:type=webappcontext对象`的问题。
+
+##### 6.x (6.1.26)
+
+![image-20211223172132330](fileless-shell.assets/image-20211223172132330.png)
+
+##### 7.x (7.5.0 )
+
+![image-20211223170727420](fileless-shell.assets/image-20211223170727420.png)
+
+##### 8.x (8.2.0)
+
+![image-20211223170921323](fileless-shell.assets/image-20211223170921323.png)
+
+##### 9.x (9.4.43)
+
+![image-20211223171052049](fileless-shell.assets/image-20211223171052049.png)
 
