@@ -27,7 +27,7 @@
     - [x] [无文件马](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/resin/fileless-shell.md)
     - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/resin/vulnerability-research.md)
 - Shiro
-    - [ ] 漏洞研究
+    - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/shiro/vulnerability-research.md)
 - Struts2
     - [ ] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/struts2/vulnerability-research.md)
         - [x] RCE via Log4j2 CVE-2021-44228
