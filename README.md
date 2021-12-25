@@ -55,5 +55,6 @@
 
 **CMS / Other**
 - OFCMS
-    - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/ofcms/vulnerability-research.md)
-
+    - [x] [代码审计](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/ofcms/vulnerability-research.md)
+- Inxedu 因酷网校在线教育系统
+    - [x] [代码审计](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/inxedu/2021_08_05_Inxedu.pdf)
