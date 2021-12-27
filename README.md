@@ -29,8 +29,8 @@
 - Shiro
     - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/shiro/vulnerability-research.md)
 - Struts2
-    - [ ] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/struts2/vulnerability-research.md)
-        - [x] RCE via Log4j2 CVE-2021-44228
+    - [ ] [漏洞分析](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/struts2/vulnerability-research.md)
+        - [x] Rce via Log4shell CVE-2021-44228
 - Spring 
     - [x] 无文件马
 - Tomcat 
@@ -54,7 +54,10 @@
 - Jackson
 
 **CMS / Other**
-- OFCMS
-    - [x] [代码审计](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/ofcms/vulnerability-research.md)
+- Apache Druid
+    - [ ] [漏洞分析](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/apache%20druid/vulnerability-research.md)
+        - [x] Rce via Log4shell CVE-2021-44228
 - Inxedu 因酷网校在线教育系统
     - [x] [代码审计](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/inxedu/2021_08_05_Inxedu.pdf)
+- OFCMS
+    - [x] [代码审计](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/ofcms/vulnerability-research.md)
