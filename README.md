@@ -1,7 +1,7 @@
 > Focus on Java Security since November 1, 2021 👣
 
 
-**Java基础 / 常见漏洞**
+**Java基础 / 漏洞类型**
 - Java SE 
     - [x] [rt.jar](https://github.com/pen4uin/JavaSec/blob/main/basic-knowledge/javase/rt.jar/rt.md)
 - Java Vulnerability
@@ -16,48 +16,43 @@
     - [ ] XXE
     - [ ] ZipSlip
 
-**中间件 / 框架**
-- Hessian
-- Hibernate
+**中间件 / Servlet容器**
+
 - JBoss
 - Jetty
-    - [x] [无文件马](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/jetty/fileless-shell.md)  
-- MyBatis
+    - [x] [内存马](https://github.com/pen4uin/JavaSec/blob/main/jetty/fileless-shell.md)  
 - Resin
-    - [x] [无文件马](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/resin/fileless-shell.md)
-    - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/resin/vulnerability-research.md)
-- Shiro
-    - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/shiro/vulnerability-research.md)
-- Struts2
-    - [ ] [漏洞分析](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/struts2/vulnerability-research.md)
-        - [x] Rce via Log4shell CVE-2021-44228
+    - [x] [内存马](https://github.com/pen4uin/JavaSec/blob/main/resin/fileless-shell.md)
+    - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/resin/vulnerability-research.md)
 - Spring 
-    - [x] 无文件马
+    - [x] 内存马
 - Tomcat 
-    - [x] [无文件马](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/tomcat/fileless-shell.md)
+    - [x] [内存马](https://github.com/pen4uin/JavaSec/blob/main/tomcat/fileless-shell.md)
 - Weblogic
-    - [x] [无文件马](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/weblogic/fileless-shell.md)
-    - [ ] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/weblogic/vulnerability-research.md)
+    - [x] [内存马](https://github.com/pen4uin/JavaSec/blob/main/weblogic/fileless-shell.md)
+    - [ ] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/weblogic/vulnerability-research.md)
         - [x] 获取Weblogic console用户名&密码(免解密)
 - WebSphere
 
 **组件 / 库 / 类库**
 - Fastjson
-- Groovy
-    - [x] [源码分析](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/groovy/source-analysis.md)
-- Log4j2
-    - [x] [漏洞研究](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/log4j2/vulnerability-research.md)
-        - [x] CVE-2021-44228
+- [Groovy](https://github.com/pen4uin/JavaSec/blob/main/groovy/source-analysis.md)
+- [Log4j2](https://github.com/pen4uin/JavaSec/blob/main/log4j2/vulnerability-research.md)
+    - [x] CVE-2021-44228
 - XMLDecoder
 - XStream
 - SnakeYAML
 - Jackson
 
-**CMS / Other**
-- Apache Druid
-    - [ ] [漏洞分析](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/apache%20druid/vulnerability-research.md)
-        - [x] Rce via Log4shell CVE-2021-44228
-- Inxedu 因酷网校在线教育系统
-    - [x] [代码审计](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/inxedu/2021_08_05_Inxedu.pdf)
-- OFCMS
-    - [x] [代码审计](https://github.com/pen4uin/JavaSec/blob/main/advanced-knowledge/ofcms/vulnerability-research.md)
+**CMS / 框架 / Others**
+- [Apache Druid](https://github.com/pen4uin/JavaSec/blob/main/apache%20druid/vulnerability-research.md)
+    - [x] Rce via Log4shell CVE-2021-44228
+- [Apache Shiro](https://github.com/pen4uin/JavaSec/blob/main/shiro/vulnerability-research.md)
+    - [x] Shiro Key的修改（仅供娱乐）
+- [Apache Struts2](https://github.com/pen4uin/JavaSec/blob/main/struts2/vulnerability-research.md)
+    - [x] Rce via Log4shell CVE-2021-44228
+- Hessian
+- Hibernate
+- [Inxedu 因酷网校在线教育系统](https://github.com/pen4uin/JavaSec/blob/main/inxedu/2021_08_05_Inxedu.pdf)
+- [OFCMS](https://github.com/pen4uin/JavaSec/blob/main/ofcms/vulnerability-research.md)
+- [Spring Messaging](https://github.com/pen4uin/JavaSec/blob/main/spring%20messaging/vulnerability-research.md)
