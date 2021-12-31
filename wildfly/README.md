@@ -87,7 +87,7 @@ Tested Version:	WildFly v18.0.0.Final
 
 - https://www.tabnine.com/code/java/methods/io.undertow.servlet.api.DeploymentInfo/addFilter
 
-![image-20211230173612025](JBoss&Wildfly%20Filter%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC%E5%AE%9E%E7%8E%B0.assets/image-20211230173612025.png)
+![image-20211230173612025](readme.assets/image-20211230173612025.png)
 
 拎出来，该反射的用反射实现就成
 
