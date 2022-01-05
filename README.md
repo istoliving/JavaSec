@@ -1,6 +1,4 @@
-`Focus on Java Security since November 1, 2021 👣`
-> 
-> 记录自己开始"卷"Java安全后所学的一些知识 👀
+> Focus on Java Security since November 1, 2021 👣`
 
 
 **语言基础 / 漏洞基础**
