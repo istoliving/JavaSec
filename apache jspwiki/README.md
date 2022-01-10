@@ -218,6 +218,6 @@ Cookie: JSESSIONID=xxx; JSPWikiAssertedName=xxx; JSPWikiUserPrefs=xxx;JSPWikiUID
   ```
 
   则将文件cf进行删除处理
-
-![image-20220110132939245](jspwiki.assets/image-20220110132939245.png)
+  
+  ![image-20220110132939245](jspwiki.assets/image-20220110132939245.png)
 
