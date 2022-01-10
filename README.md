@@ -27,9 +27,9 @@
 
 **[Apache 基金会项目](https://www.apache.org/index.html#projects-list)**
 - [Apache Druid](https://github.com/pen4uin/JavaSec/blob/main/apache%20druid/)
-- [Apache Shiro](https://github.com/pen4uin/JavaSec/blob/main/shiro/) `安全框架`
+- [Apache JSPWiki](https://github.com/pen4uin/JavaSec/tree/main/apache%20jspwiki)
+- [Apache Shiro](https://github.com/pen4uin/JavaSec/blob/main/shiro/) 
 - [Apache Struts2](https://github.com/pen4uin/JavaSec/blob/main/struts2/)  
-
 
 **ORM框架**
 - Hibernate
