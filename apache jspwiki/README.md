@@ -149,7 +149,7 @@ sudo docker run -p 8080:8080 -p 5005:5005 -td jspwiki_debug
 
 
 
-```http
+```shell
 Get /Logout.jsp
 ...
 ...
