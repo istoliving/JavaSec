@@ -49,7 +49,8 @@
 - [Spring Cloud]()
 
 
-**Github / Gitee开源项目**
+**Github / Gitee开源项目 / Others**
+- [Atlassian Jira](https://github.com/pen4uin/JavaSec/tree/main/atlassian%20jira)
 - [OFCMS](https://github.com/pen4uin/JavaSec/blob/main/ofcms/) `CMS`
 - [SpiderFlow](https://github.com/pen4uin/JavaSec/tree/main/spider-flow)  `在线爬虫`
 - [Inxedu](https://github.com/pen4uin/JavaSec/blob/main/inxedu/2021_08_05_Inxedu.pdf) `在线教育平台`
