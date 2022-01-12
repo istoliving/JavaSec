@@ -8,27 +8,13 @@
 #### 漏洞描述
 
 影响版本
-
->  4.4.x
->  5.x.x
->  6.x.x
->  7.0.x
->  7.1.x
->  7.2.x
->  7.3.x
->  7.4.x
->  7.5.x
->  7.6.x before 7.6.14 (the fixed version for 7.6.x)
->  7.7.x
->  7.8.x
->  7.9.x
->  7.10.x
->  7.11.x
->  7.12.x
->  7.13.x before 7.13.5 (the fixed version for 7.13.x)
->  8.0.x before 8.0.3 (the fixed version for 8.0.x)
->  8.1.x before 8.1.2 (the fixed version for 8.1.x)
->  8.2.x before 8.2.3 (the fixed version for 8.2.x)
+```
+4.4.x
+5.x.x
+6.x.x
+7.0.x、7.1.x、7.2.x、7.3.x、7.4.x、7.5.x、7.6.x before 7.6.14 (the fixed version for 7.6.x)、7.7.x、7.8.x、7.9.x、7.10.x、7.11.x、7.12.x、7.13.x before 7.13.5 (the fixed version for 7.13.x)
+8.0.x before 8.0.3 (the fixed version for 8.0.x)、8.1.x before 8.1.2 (the fixed version for 8.1.x)、8.2.x before 8.2.3 (the fixed version for 8.2.x)
+```
 
 ### 漏洞复现
 
