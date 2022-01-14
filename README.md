@@ -1,10 +1,6 @@
 > Focus on Java Security since November 1, 2021 👣`
 
 
-**语言基础 / 漏洞基础**
-- [Java SE](https://github.com/pen4uin/JavaSec/tree/main/basic-knowledge/javase/)
-- [Java Vulnerability](https://github.com/pen4uin/JavaSec/tree/main/basic-knowledge/)
-
 **中间件 / Servlet容器**
 
 - [JBoss](https://github.com/pen4uin/JavaSec/tree/main/jboss/) 
