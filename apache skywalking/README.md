@@ -1,6 +1,6 @@
 ## 相关漏洞
 
-### CVE-2021-44228 Log4sehll JNDI 
+### CVE-2021-44228 RCE via Log4Shell
 
 ####  漏洞描述
 
