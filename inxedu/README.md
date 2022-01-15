@@ -5,41 +5,41 @@
 \src\main\java\com\inxedu\os\common\controller\VideoUploadController.java
 
 ```java
-	/**
-	 * 视频上传
-	 */
-	@RequestMapping(value="/uploadvideo",method={RequestMethod.POST})
-	public String gok4(HttpServletRequest request,HttpServletResponse response,@RequestParam(value="uploadfile" ,required=true) MultipartFile uploadfile,
-			@RequestParam(value="param",required=false) String param,
-			@RequestParam(value="fileType",required=true) String fileType){
-		try{
+/**
+ * 视频上传
+ */
+@RequestMapping(value="/uploadvideo",method={RequestMethod.POST})
+public String gok4(HttpServletRequest request,HttpServletResponse response,@RequestParam(value="uploadfile" ,required=true) MultipartFile uploadfile,
+		@RequestParam(value="param",required=false) String param,
+		@RequestParam(value="fileType",required=true) String fileType){
+	try{
 
-			String[] type = fileType.split(",");
-			//设置图片类型
-			setFileTypeList(type);
-			//获取上传文件类型的扩展名,先得到.的位置，再截取从.的下一个位置到文件的最后，最后得到扩展名
-			String ext = FileUploadUtils.getSuffix(uploadfile.getOriginalFilename());
-			if(!fileType.contains(ext)){
-				return responseErrorData(response,1,"文件格式错误，上传失败。");
-			}
-			//获取文件路径
-			String filePath = getPath(request,ext,param);
-			File file = new File(getProjectRootDirPath(request)+filePath);
-
-			//如果目录不存在，则创建
-			if(!file.getParentFile().exists()){
-				file.getParentFile().mkdirs();
-			}
-			//保存文件
-			uploadfile.transferTo(file);
-			//返回数据
-
-			return responseData(filePath,0,"上传成功",response);
-		}catch (Exception e) {
-			logger.error("gok4()--error",e);
-			return responseErrorData(response,2,"系统繁忙，上传失败");
+		String[] type = fileType.split(",");
+		//设置图片类型
+		setFileTypeList(type);
+		//获取上传文件类型的扩展名,先得到.的位置，再截取从.的下一个位置到文件的最后，最后得到扩展名
+		String ext = FileUploadUtils.getSuffix(uploadfile.getOriginalFilename());
+		if(!fileType.contains(ext)){
+			return responseErrorData(response,1,"文件格式错误，上传失败。");
 		}
+		//获取文件路径
+		String filePath = getPath(request,ext,param);
+		File file = new File(getProjectRootDirPath(request)+filePath);
+
+		//如果目录不存在，则创建
+		if(!file.getParentFile().exists()){
+			file.getParentFile().mkdirs();
+		}
+		//保存文件
+		uploadfile.transferTo(file);
+		//返回数据
+
+		return responseData(filePath,0,"上传成功",response);
+	}catch (Exception e) {
+		logger.error("gok4()--error",e);
+		return responseErrorData(response,2,"系统繁忙，上传失败");
 	}
+}
 ```
 
 漏洞点
