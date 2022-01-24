@@ -25,7 +25,7 @@
 - [Weblogic](https://github.com/pen4uin/JavaSec/tree/main/weblogic/)
 - WebSphere
 - XMLDecoder
-- XStream
+- [XStream](https://github.com/pen4uin/JavaSec/tree/main/xstream)
 
 
 
