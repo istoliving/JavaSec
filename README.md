@@ -13,7 +13,7 @@
 - [Apache Struts2](https://github.com/pen4uin/JavaSec/blob/main/struts2/)  
 - [Atlassian Jira](https://github.com/pen4uin/JavaSec/tree/main/atlassian%20jira)
 - [Groovy](https://github.com/pen4uin/JavaSec/blob/main/groovy/)
-- [FasterXML Jackson]()
+- [FasterXML jackson-databind](https://github.com/pen4uin/JavaSec/tree/main/jackson-databind)
 - [JBoss](https://github.com/pen4uin/JavaSec/tree/main/jboss/) 
 - [Jetty](https://github.com/pen4uin/JavaSec/blob/main/jetty/)
 - [Resin](https://github.com/pen4uin/JavaSec/blob/main/resin/)
