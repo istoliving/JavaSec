@@ -12,12 +12,12 @@
 - [Apache SkyWalking](https://github.com/pen4uin/JavaSec/tree/main/apache%20skywalking)
 - [Apache Struts2](https://github.com/pen4uin/JavaSec/blob/main/struts2/)  
 - [Atlassian Jira](https://github.com/pen4uin/JavaSec/tree/main/atlassian%20jira)
-- [Groovy](https://github.com/pen4uin/JavaSec/blob/main/groovy/)
 - [FasterXML jackson-databind](https://github.com/pen4uin/JavaSec/tree/main/jackson-databind)
+- [Groovy](https://github.com/pen4uin/JavaSec/blob/main/groovy/)
 - [JBoss](https://github.com/pen4uin/JavaSec/tree/main/jboss/) 
 - [Jetty](https://github.com/pen4uin/JavaSec/blob/main/jetty/)
 - [Resin](https://github.com/pen4uin/JavaSec/blob/main/resin/)
-- SnakeYAML
+- [SnakeYaml](https://github.com/pen4uin/JavaSec/tree/main/snakeyaml)
 - [Spring MVC](https://github.com/pen4uin/JavaSec/tree/main/springmvc)
 - [Spring Messaging](https://github.com/pen4uin/JavaSec/blob/main/spring%20messaging/)
 - [Tomcat](https://github.com/pen4uin/JavaSec/tree/main/tomcat)
@@ -29,7 +29,7 @@
 
 
 
-##### Just For Practice !
+###### Just For Practice
 
 - [Inxedu](https://github.com/pen4uin/JavaSec/blob/main/inxedu/2021_08_05_Inxedu.pdf)
 - [OFCMS](https://github.com/pen4uin/JavaSec/blob/main/ofcms/) 
