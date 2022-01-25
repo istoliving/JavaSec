@@ -24,7 +24,7 @@
 - [Wildfly](https://github.com/pen4uin/JavaSec/tree/main/wildfly/)
 - [Weblogic](https://github.com/pen4uin/JavaSec/tree/main/weblogic/)
 - WebSphere
-- XMLDecoder
+- [XMLDecoder](https://github.com/pen4uin/JavaSec/tree/main/xmldecoder)
 - [XStream](https://github.com/pen4uin/JavaSec/tree/main/xstream)
 
 
