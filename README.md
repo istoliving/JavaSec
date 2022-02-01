@@ -40,4 +40,4 @@
 #### 源码阅读
 > 工具原理分析
 
-- [Godzilla 哥斯拉](https://github.com/pen4uin/JavaSec/tree/main/)
+- [Godzilla 哥斯拉](https://github.com/pen4uin/JavaSec/tree/main/godzilla)
