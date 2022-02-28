@@ -1,11 +1,15 @@
-目录
-- Fastjson <= 1.2.24
-  - Fastjson <= 1.2.24
-       - 漏洞分析
-## Fastjson <= 1.2.24
-### 漏洞分析
+前置基础
+---
 
-#### 序列化
+Fastjson是一个Java语言编写的高性能功能完善的JSON库。 它采用一种“假定有序快速匹配”的算法，提升了JSON Parse的性能，是目前Java语言中最快的JSON库。 Fastjson接口简单易用，已经被广泛使用在缓存序列化、协议交互、Web输出、Android客户端等多种应用场景。
+
+相关漏洞
+---
+
+### Fastjson <= 1.2.24
+#### 漏洞分析
+
+##### 序列化
 
 测试示例代码
 
@@ -53,7 +57,7 @@ public class Portrait {
 
 
 
-##### JSON.toJSONString()
+###### JSON.toJSONString()
 
 > SerializerFeature.WriteClassName是toJSONString的一个属性值，设置之后在序列化的时候会多写入一个@type，用于JSON被解析时的指定某个类。
 
@@ -91,7 +95,7 @@ System.out.println(jsonStr);
 {"iD":"pen4uin","level":"vegetable"}
 ```
 
-#### 反序列化
+##### 反序列化
 
 ##### JSON.parse()
 
@@ -388,3 +392,34 @@ methodName.length() >= 4
 ![image-20220110042918567](fastjson.assets/image-20220110042918567.png)
 
 所以若想使用JSON.parse()进行反序列化时调用到目标类的getter方法，只需要该方法满足以上条件即可。
+
+### fastjson<=1.2.41
+
+
+### fastjson<=1.2.42
+
+
+### fastjson<=1.2.43
+
+
+
+### fastjson<=1.2.45
+
+
+### fastjson<=1.2.47
+
+
+### fastjson<=1.2.62
+
+
+### fastjson<=1.2.66
+
+
+### fastjson<=1.2.68
+
+研究利用
+---
+
+- 不出网场景的利用
+- WAF Bypass
+- 利用链挖掘
