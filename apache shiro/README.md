@@ -1,6 +1,45 @@
+前置基础
+---
+
+Apache Shiro是一个功能强大且易于使用的Java安全框架，功能包括身份验证，授权，加密和会话管理。 
 
 
-## 漏洞利用
+相关漏洞
+---
+
+### Shiro550 CVE-2016-4437
+
+```
+git clone https://github.com/apache/shiro.git  
+cd shiro
+git checkout shiro-root-1.2.4
+```
+
+登陆时-设置rememberMe-记录用户登录的凭证 
+
+- 序列化用户身份"user"
+- 对user进行AES加密，密钥为常量
+- base64编码
+- 设置到cookie中的rememberme字段
+
+
+
+登陆后-rememberMe解密-识别用户身份
+
+- 读取cookie中rememberMe值
+- base64解码
+- AES解密
+- 反序列化
+
+
+
+### Shiro721 CVE-2019-12422
+
+
+
+研究利用
+---
+
 ### Key 修改
 
 测试环境
