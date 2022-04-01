@@ -50,35 +50,33 @@ git checkout shiro-root-1.2.4
 
 - 方式1：getCipherKey()
 
-![image-20211118154359697](vulnerability-research.assets/image-20211118154359697.png)
+![image](https://user-images.githubusercontent.com/55024146/161286812-4f10b51d-135f-4e24-9132-aa43ea746dcd.png)
 
 - 方式2：爆破
 
-![image-20211118155031602](vulnerability-research.assets/image-20211118155031602.png)
+![image](https://user-images.githubusercontent.com/55024146/161287067-6d227543-d730-4ad8-9484-9caf49336c13.png)
 
 #### 修改key
 
 ##### 方式1: 成员变量
 
-![image-20211118154624802](vulnerability-research.assets/image-20211118154624802.png)
+![image](https://user-images.githubusercontent.com/55024146/161287102-ac5d6877-1e61-4e2a-a206-df660cd9befe.png)
 
 
-
-![image-20211118154847035](vulnerability-research.assets/image-20211118154847035.png)
+![image](https://user-images.githubusercontent.com/55024146/161287150-04542e2c-098c-4954-b49e-4adbeb828f67.png)
 
 爆破密钥
 
-![image-20211118154924247](vulnerability-research.assets/image-20211118154924247.png)
-
+![image](https://user-images.githubusercontent.com/55024146/161287202-39cfb0fc-45f6-4642-9fd6-3622c3b9ef94.png)
 
 
 执行命令
 
-![image-20211118155359227](vulnerability-research.assets/image-20211118155359227.png)
+![image](https://user-images.githubusercontent.com/55024146/161287244-6bcbddd6-9f4b-4277-998c-693a64ad1309.png)
 
 ##### 方式2: 成员方法 setCipherKey
 
-![image-20211118155853780](vulnerability-research.assets/image-20211118155853780.png)
+![image](https://user-images.githubusercontent.com/55024146/161287293-51bead16-961b-4799-8a58-795fc0d8bbf5.png)
 
 #### 相关代码
 `仅为实验性代码`
