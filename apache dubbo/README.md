@@ -212,3 +212,6 @@ https://paper.seebug.org/1814/
 https://github.com/bitterzzZZ/CVE-2021-43297-POC
 ```
 
+### CVE-2021-37579 Pre-Auth Unsafe Java Deserialization
+
+- https://securitylab.github.com/advisories/GHSL-2021-097-apache-dubbo/
