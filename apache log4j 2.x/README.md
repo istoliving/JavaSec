@@ -1,10 +1,7 @@
-**注：**
-```
-# 本文仅供安全研究使用 👨‍✈️
-这里想提一嘴，看到很多人在"疯狂"地测dnslog，其实还是希望在没有授权情况下最好不要进行漏洞探测/攻击行为，毕竟"自律是自由的基础"!  👨‍✈️ 
-```
+相关漏洞
+---
 
-### 漏洞分析
+### CVE-2021-44228 Log4Shell
 
 根据流传的payload搭建测试环境
 
@@ -25,11 +22,12 @@ public class log4j_rce {
 一步一步跟进，最后跟到
 - org.apache.logging.log4j.core.lookup.Interpolator#lookup
 
-![image](vulnerability-research.assets/145439561-9dc12330-6705-4297-aeef-42413a4edc21.png)
+![image](https://user-images.githubusercontent.com/55024146/165895592-5e910b2b-1e49-4cc6-92cf-faddfb24e975.png)
 
-似乎就是这里，测下断点，调试
 
-![image](vulnerability-research.assets/145439835-a4d042d7-80b9-47ca-a65b-8dcb24ee6bd1.png)
+似乎就是这里，断点调试
+
+![image](https://user-images.githubusercontent.com/55024146/165895618-b81e3fcc-4bc8-4407-a927-9781318bc188.png)
 
 答案呼之欲出，lookup + jndi！
 
@@ -39,8 +37,8 @@ public class log4j_rce {
 
 起一个恶意的LDAPRefServer、恶意类Evil
 
-![image](vulnerability-research.assets/145442280-7bfa4038-276e-414b-b0b6-2c1dc6e92e74.png)
+![image](https://user-images.githubusercontent.com/55024146/165895658-d4eea680-015a-411f-96c7-2384fa08d462.png)
 
 然后触发即可
 
-![image](vulnerability-research.assets/145458787-4acd92c0-50db-40dc-b4cb-6d49014e53ac.png)
+![image](https://user-images.githubusercontent.com/55024146/165895677-ab26a7bb-69a3-4504-9156-7aade555ea07.png)
