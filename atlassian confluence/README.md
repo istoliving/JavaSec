@@ -1,6 +1,10 @@
 相关漏洞
 ---
 
+### CVE-2022-26134 OGNL -> RCE
+- https://www.rapid7.com/blog/post/2022/06/02/active-exploitation-of-confluence-cve-2022-26134/
+- https://github.com/jbaines-r7/through_the_wire
+
 ### CVE-2021-26084 OGNL -> RCE
 - https://github.com/httpvoid/writeups/blob/main/Confluence-RCE.md
 - https://mp.weixin.qq.com/s/XDxIhLLWaoXaODaKW2mkrg
