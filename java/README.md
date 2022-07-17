@@ -305,6 +305,14 @@ ref:
 - https://github.com/snyk/zip-slip-vulnerability
 - https://github.com/cesarsotovalero/zip-slip-exploit-example
 
+### EL Injection
+
+- [01 Java表达式注入的武器化利用](https://yzddmr6.com/posts/java-expression-exploit/)
+
+
+
+
+
 
 
 
