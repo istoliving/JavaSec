@@ -306,14 +306,14 @@ response.getWriter().write("Servlet Injected Successfully!!!");
 
 以往遇上weblogic的站点时都是通过密钥进行解密获取console的密码，甚至但是解密方法就出现好几种，
 
-![image](vulnerability-research.assets/144720808-7e3efafd-8126-4994-bd78-945e314ff3ac.png)
+![image](img/144720808-7e3efafd-8126-4994-bd78-945e314ff3ac.png)
 
 但是前几个小时在twitter @jas502n师傅公开了[Use T3 protocol Get weblogic console username, password](https://twitter.com/jas502n/status/1467122190760177664)这个姿势，于是赶紧学习学习！！！
 
 
 断点看看代码细节：
 
-![image](vulnerability-research.assets/144720899-5b80c842-e6dd-47c2-b2fc-e3c60ba2a8f5.png)
+![image](img/144720899-5b80c842-e6dd-47c2-b2fc-e3c60ba2a8f5.png)
 
 代码实现
 
@@ -352,5 +352,5 @@ response.getWriter().write("Servlet Injected Successfully!!!");
 
 测试效果
 
-![image](vulnerability-research.assets/144720974-59cb9fd5-65df-4dae-a9f8-fd103719f499.png)
+![image](img/144720974-59cb9fd5-65df-4dae-a9f8-fd103719f499.png)
 

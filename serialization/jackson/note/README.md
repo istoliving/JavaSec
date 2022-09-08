@@ -80,7 +80,7 @@ LDAP服务端
 java -jar .\JNDIExploit-1.4-SNAPSHOT-modified.jar -i 10.10.10.1
 ```
 
-![image-20220124164807399](jackson.assets/image-20220124164807399.png)
+![image-20220124164807399](img/image-20220124164807399.png)
 
 Payload-弹计算器
 
@@ -91,7 +91,7 @@ Payload-弹计算器
 
 测试效果
 
-![image-20220124165036128](jackson.assets/image-20220124165036128.png)
+![image-20220124165036128](img/image-20220124165036128.png)
 
 
 
@@ -99,7 +99,7 @@ Payload-弹计算器
 
 diff 如下
 
-![image-20220124163901495](jackson.assets/image-20220124163901495.png)
+![image-20220124163901495](img/image-20220124163901495.png)
 
 定位到JndiConverter类，并下断点
 
@@ -178,7 +178,7 @@ public Object deserialize(JsonParser p, DeserializationContext ctxt) throws IOEx
 
 当前运行时 this._vanillaProcessing 为true
 
-![image-20220124171929408](jackson.assets/image-20220124171929408.png)
+![image-20220124171929408](img/image-20220124171929408.png)
 
 跟进 this.vanillaDeserialize() 方法
 
@@ -259,7 +259,7 @@ public void deserializeAndSet(JsonParser p, DeserializationContext ctxt, Object 
 }
 ```
 
-![image-20220124173333679](jackson.assets/image-20220124173333679.png)
+![image-20220124173333679](img/image-20220124173333679.png)
 
 跟进
 

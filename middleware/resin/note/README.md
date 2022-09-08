@@ -12,7 +12,7 @@
 
 > E:\Resin\resin-4.0.65\conf\app-default.xml
 
-![image](vulnerability-research.assets/144174160-82c02d3b-a775-4b71-acaf-d9f03f2b3653-164000593249077.png)
+![image](img/144174160-82c02d3b-a775-4b71-acaf-d9f03f2b3653-164000593249077.png)
 
 可见Resin不仅支持.jsp、.jspx，也支持.jspf。
 
@@ -21,13 +21,13 @@
     response.getWriter().write("Hello Resin !!!");
 %>
 ```
-![image](vulnerability-research.assets/144174179-d1e5af4c-c1cc-4f41-a5da-7fa2eb977b66-164000593053376.png)
+![image](img/144174179-d1e5af4c-c1cc-4f41-a5da-7fa2eb977b66-164000593053376.png)
 
 ### 0x02-类IIS6.0的解析漏洞
 
 先看测试效果图
 
-![image](vulnerability-research.assets/144174242-db437f8b-0feb-4683-8e46-7e7586905a15-164000592925175.png)
+![image](img/144174242-db437f8b-0feb-4683-8e46-7e7586905a15-164000592925175.png)
 
 希望传达的意思
 
@@ -41,57 +41,57 @@
 
 **第1步：jsp文件**
 
-![image](vulnerability-research.assets/144174286-61ce59f9-da8f-47da-bb5a-60c65de85aab-164000592677374.png)
+![image](img/144174286-61ce59f9-da8f-47da-bb5a-60c65de85aab-164000592677374.png)
 
-![image](vulnerability-research.assets/144174296-2f6a4527-c1bb-4199-b5b9-d108216991bc-164000592521673.png)
+![image](img/144174296-2f6a4527-c1bb-4199-b5b9-d108216991bc-164000592521673.png)
 
 正常进入jsp的解析逻辑
 
-![image](vulnerability-research.assets/144174317-03477b55-7f9c-4550-9e06-cb21fb4cd300-164000592371772.png)
+![image](img/144174317-03477b55-7f9c-4550-9e06-cb21fb4cd300-164000592371772.png)
 
 **第2步：非jsp文件**
 
-![image](vulnerability-research.assets/144174351-15c3b0f6-df52-4c02-9322-bb0f76a3b2bf-164000592174971.png)
+![image](img/144174351-15c3b0f6-df52-4c02-9322-bb0f76a3b2bf-164000592174971.png)
 
-![image](vulnerability-research.assets/144174357-ba30fda0-d499-4929-8234-f0778f09039b-164000592062570.png)
+![image](img/144174357-ba30fda0-d499-4929-8234-f0778f09039b-164000592062570.png)
 
 进入resin-file的处理逻辑
 
-![image](vulnerability-research.assets/144174378-bf20140b-fedf-4507-bef2-445187820ab2-164000591919169.png)
+![image](img/144174378-bf20140b-fedf-4507-bef2-445187820ab2-164000591919169.png)
 
 处理结果
 
-![image](vulnerability-research.assets/144174406-2259125d-b101-4073-94d5-01b8f9d67d96-164000591779667.png)
+![image](img/144174406-2259125d-b101-4073-94d5-01b8f9d67d96-164000591779667.png)
 
 **第3步：x.jsp文件夹 + 非.jsp文件**
 
-![image](vulnerability-research.assets/144174432-3c2e4d49-7cc2-48ae-928e-60c9af933411-164000591588465.png)
+![image](img/144174432-3c2e4d49-7cc2-48ae-928e-60c9af933411-164000591588465.png)
 
-![image](vulnerability-research.assets/144174451-3cd87542-0dad-41de-ad7f-48a9359d8ef2-164000591406663.png)
+![image](img/144174451-3cd87542-0dad-41de-ad7f-48a9359d8ef2-164000591406663.png)
 
-![image](vulnerability-research.assets/144174460-5f803d3c-8b6f-42e6-9f81-4def07970343-164000591286061.png)
+![image](img/144174460-5f803d3c-8b6f-42e6-9f81-4def07970343-164000591286061.png)
 
 也进入resin-file的处理逻辑
 
-![image](vulnerability-research.assets/144174477-b242ffb6-6d62-442c-98a7-ea6a7cb11206-164000591148059.png)
+![image](img/144174477-b242ffb6-6d62-442c-98a7-ea6a7cb11206-164000591148059.png)
 
 #### 2、造成这种处理差异的原理是什么？
 
-![image](vulnerability-research.assets/144174511-0cdabaf9-33c1-4c6e-aca5-c27c4ade0801-164000590875157.png)
+![image](img/144174511-0cdabaf9-33c1-4c6e-aca5-c27c4ade0801-164000590875157.png)
 
 map方法将会对url路径进行正则表达式，然后根据匹配结果进入不同的处理逻辑
 
 > /hello.jsp
 
-![image](vulnerability-research.assets/144174547-64dc2dba-d06b-4591-8f01-3ad408648d96-164000590703855.png)
+![image](img/144174547-64dc2dba-d06b-4591-8f01-3ad408648d96-164000590703855.png)
 
 > /hello.hello
 
-![image](vulnerability-research.assets/144174573-43a536d0-d35f-40e2-8ecd-0b79f1d66723-164000590498553.png)
+![image](img/144174573-43a536d0-d35f-40e2-8ecd-0b79f1d66723-164000590498553.png)
 
 > /x.jsp/hello.hello
 
-![image](vulnerability-research.assets/144174584-858aca20-2946-4f46-808d-7da2c1b733ad-164000590275651.png)
+![image](img/144174584-858aca20-2946-4f46-808d-7da2c1b733ad-164000590275651.png)
 
 
 ### 0x03 Resin 4.0.36 信息泄露漏洞(ZSL-2013-5144)
@@ -101,46 +101,46 @@ map方法将会对url路径进行正则表达式，然后根据匹配结果进�
 测试效果
 > 读取index.jsp
 
-![image](vulnerability-research.assets/144178194-d2717d65-d9ed-4f3c-8903-4f4a624d848f-164000590059149.png)
+![image](img/144178194-d2717d65-d9ed-4f3c-8903-4f4a624d848f-164000590059149.png)
 
 > 读取resin-admin.xml
 
-![image](vulnerability-research.assets/144181449-d6b81379-429e-49a0-b02a-72c5c860b6d2-164000589886547.png)
+![image](img/144181449-d6b81379-429e-49a0-b02a-72c5c860b6d2-164000589886547.png)
 
 
 #### 漏洞分析
 
 从上面的分析中知道了可以从com.caucho.server.dispatch.UrlMap观察resin对http请求的处理逻辑，下断点调试
 
-![image](vulnerability-research.assets/144178592-1ee0f23f-5b67-4cd7-8dc4-a0437cb67168-164000589598845.png)
+![image](img/144178592-1ee0f23f-5b67-4cd7-8dc4-a0437cb67168-164000589598845.png)
 
 一路跟到`ServletMapping`
 
-![image](vulnerability-research.assets/144178671-718bf816-6494-4676-a40f-3b46d9f10c74-164000589357743.png)
+![image](img/144178671-718bf816-6494-4676-a40f-3b46d9f10c74-164000589357743.png)
 
 很明显，到这里应该就知道漏洞成因估计是该版本的resin-web.xml默认添加了路由为/viewfile/*的servlet
 
 文件位置
 > E:\Resin\resin-pro-4.0.36\doc\resin-doc\WEB-INF\resin-web.xml
 
-![image](vulnerability-research.assets/144179072-662fff09-1c54-4ee2-a25b-923a542aaf40-164000589084541.png)
+![image](img/144179072-662fff09-1c54-4ee2-a25b-923a542aaf40-164000589084541.png)
 
 跟进对应的类
 - com.caucho.doc.ViewFileServlet
 
-![image](vulnerability-research.assets/144179200-719d6a33-731d-402d-9907-cc15ea2ca4bf-164000587496637.png)
+![image](img/144179200-719d6a33-731d-402d-9907-cc15ea2ca4bf-164000587496637.png)
 
 
 继续断点
 
-![image](vulnerability-research.assets/144179705-96c69246-482e-43d3-8d96-b3181bc2c07c-164000587935539.png)
+![image](img/144179705-96c69246-482e-43d3-8d96-b3181bc2c07c-164000587935539.png)
 
 然后通过viewFile打印文件内容
 
-![image](vulnerability-research.assets/144183728-c145ad4b-eca7-4ee1-866c-e6c039910117.png)
+![image](img/144183728-c145ad4b-eca7-4ee1-866c-e6c039910117.png)
 
 
-![image](vulnerability-research.assets/144183814-9994ff06-4e7a-458b-92c1-c881e1834c82.png)
+![image](img/144183814-9994ff06-4e7a-458b-92c1-c881e1834c82.png)
 
 ### 回显
 
@@ -151,13 +151,13 @@ map方法将会对url路径进行正则表达式，然后根据匹配结果进�
 
 - com.caucho.server.http.HttpRequest#handleRequest
 
-  ![image-20220105153754258](resinEcho.assets/image-20220105153754258.png)
+  ![image-20220105153754258](img/image-20220105153754258.png)
 
 - com.caucho.server.http.AbstractHttpRequest#getResponseFacade
 
   - 返回 response 对象
 
-  ![image-20220105153911823](resinEcho.assets/image-20220105153911823.png)
+  ![image-20220105153911823](img/image-20220105153911823.png)
 
   所以如果能获取到AbstractHttpRequest对象并调用该对象的getResponseFacade方法，即可获取response对象。
 
@@ -165,7 +165,7 @@ map方法将会对url路径进行正则表达式，然后根据匹配结果进�
 
 > CTRL + H
 
-![image-20220105154711321](resinEcho.assets/image-20220105154711321.png)
+![image-20220105154711321](img/image-20220105154711321.png)
 
 
 
@@ -175,13 +175,13 @@ map方法将会对url路径进行正则表达式，然后根据匹配结果进�
 
 ​		通过反射从`_currentRequest`获取到request对象
 
-![image-20220105155432966](resinEcho.assets/image-20220105155432966.png)
+![image-20220105155432966](img/image-20220105155432966.png)
 
-![image-20220105155510412](resinEcho.assets/image-20220105155510412.png)
+![image-20220105155510412](img/image-20220105155510412.png)
 
 ​		测试发现实际上获取到的request对象为HttpRequest类型，而HttpRequest继承自`AbstractHttpRequest`，则可以调用getResponseFacade()方法获取response对象
 
-![image-20220105155805693](resinEcho.assets/image-20220105155805693.png)
+![image-20220105155805693](img/image-20220105155805693.png)
 
 
 
@@ -227,21 +227,21 @@ writer.write(scanner.hasNext() ? scanner.next() : "");
 
   - 获取ContextRequest对象
 
-  ![image-20220105164537318](resinEcho.assets/image-20220105164537318.png)
+  ![image-20220105164537318](img/image-20220105164537318.png)
 
   - 实际获取到的为HttpServletRequestImpl对象
 
-    ![image-20220105170110241](resinEcho.assets/image-20220105170110241.png)
+    ![image-20220105170110241](img/image-20220105170110241.png)
 
 - com.caucho.server.http.HttpServletRequestImpl#_response
 
   - 获取到HttpServletRequestImpl对象后，通过_response字段获取到response对象。
 
-  ![image-20220105170219120](resinEcho.assets/image-20220105170219120.png)
+  ![image-20220105170219120](img/image-20220105170219120.png)
 
   - 运行时截图
 
-    ![image-20220105170612858](resinEcho.assets/image-20220105170612858.png)
+    ![image-20220105170612858](img/image-20220105170612858.png)
 
 
 
@@ -283,13 +283,13 @@ writer.write(scanner.hasNext() ? scanner.next() : "");
 
 - com.caucho.server.http.HttpRequest#handleRequest
 
-  ![image-20220105161112694](resinEcho.assets/image-20220105161112694.png)
+  ![image-20220105161112694](img/image-20220105161112694.png)
 
 - com.caucho.server.connection.AbstractHttpRequest#_response
 
   - response 对象
 
-  ![image-20220105161306990](resinEcho.assets/image-20220105161306990.png)
+  ![image-20220105161306990](img/image-20220105161306990.png)
 
   所以如果能获取到AbstractHttpRequest对象，则可以反射获取该对象的_response字段（即response对象）。
 
@@ -299,7 +299,7 @@ writer.write(scanner.hasNext() ? scanner.next() : "");
 
   > CTRL + H
 
-![image-20220105161712914](resinEcho.assets/image-20220105161712914.png)
+![image-20220105161712914](img/image-20220105161712914.png)
 
 ##### 基于 ServletInvocation
 
@@ -309,17 +309,17 @@ writer.write(scanner.hasNext() ? scanner.next() : "");
 
   - 返回ServletRequest对象
 
-  ![image-20220105161958196](resinEcho.assets/image-20220105161958196.png)
+  ![image-20220105161958196](img/image-20220105161958196.png)
 
   - 实际获取到的为HttpRequest对象
 
-    ![image-20220105171626526](resinEcho.assets/image-20220105171626526.png)
+    ![image-20220105171626526](img/image-20220105171626526.png)
 
 - com.caucho.server.connection.AbstractHttpRequest#_response
 
   - 获取到HttpRequest对象，由于HttpRequest类中并没有保存_response对象，需要从父类AbstractHttpRequest中获取。
 
-  ![image-20220105171905716](resinEcho.assets/image-20220105171905716.png)
+  ![image-20220105171905716](img/image-20220105171905716.png)
 
   - 运行时截图
 
@@ -327,7 +327,7 @@ writer.write(scanner.hasNext() ? scanner.next() : "");
     contextRequest.getClass().getSuperclass() -> com.caucho.server.connection.AbstractHttpRequest
     ```
 
-    ![image-20220105172215180](resinEcho.assets/image-20220105172215180.png)
+    ![image-20220105172215180](img/image-20220105172215180.png)
 
 
 
@@ -402,7 +402,7 @@ cmd: whoami
 
 测试效果
 
-![image-20220105191416860](resinEcho.assets/image-20220105191416860.png)
+![image-20220105191416860](img/image-20220105191416860.png)
 
 
 
@@ -431,7 +431,7 @@ cmd: whoami
 
 `com.example.general.ServletShell#doGet`方法处断点，获得相关的调用栈如下
 
-![image-20220106131156977](resin-fileless-shell.assets/image-20220106131156977.png)
+![image-20220106131156977](img/image-20220106131156977.png)
 
 逐步分析
 
@@ -439,19 +439,19 @@ cmd: whoami
 
   - 成员方法  getContextRequest()
 
-    ![image-20220106132143479](resin-fileless-shell.assets/image-20220106132143479.png)
+    ![image-20220106132143479](img/image-20220106132143479.png)
 
     ```
     Object currentRequest = this.getClass().getMethod("getContextRequest").invoke(null);
     ```
 
-    ![image-20220106132647928](resin-fileless-shell.assets/image-20220106132647928.png)
+    ![image-20220106132647928](img/image-20220106132647928.png)
 
     ```
     currentRequest.getClass() -> com.caucho.server.http.HttpRequest
     ```
 
-    ![image-20220106132957181](resin-fileless-shell.assets/image-20220106132957181.png)
+    ![image-20220106132957181](img/image-20220106132957181.png)
 
 - com.caucho.server.http.HttpRequest
 
@@ -459,13 +459,13 @@ cmd: whoami
 
     - 成员方法 getWebApp()
 
-      ![image-20220106142101670](resin-fileless-shell.assets/image-20220106142101670.png)
+      ![image-20220106142101670](img/image-20220106142101670.png)
 
       ```
       currentRequest.getClass().getMethod("getWebApp").invoke(currentRequest) -> com.caucho.server.webapp.Application
       ```
 
-      ![image-20220106142700706](resin-fileless-shell.assets/image-20220106142700706.png)
+      ![image-20220106142700706](img/image-20220106142700706.png)
 
 - com.caucho.server.webapp.Application
 
@@ -485,15 +485,15 @@ cmd: whoami
 
     - Filter
 
-    ![image-20220106144849036](resin-fileless-shell.assets/image-20220106144849036.png)
+    ![image-20220106144849036](img/image-20220106144849036.png)
 
     - Listener
 
-    ![image-20220106144905739](resin-fileless-shell.assets/image-20220106144905739.png)
+    ![image-20220106144905739](img/image-20220106144905739.png)
 
     - Servlet
 
-    ![image-20220106144931512](resin-fileless-shell.assets/image-20220106144931512.png)
+    ![image-20220106144931512](img/image-20220106144931512.png)
 
   至此，针对不同类型的内存马调用相关的成员方法注入即可。
 
@@ -510,7 +510,7 @@ WebApp webApp = (WebApp)currentRequest.getClass().getMethod("getWebApp").invoke(
 
 运行时截图
 
-![image-20220106150529815](resin-fileless-shell.assets/image-20220106150529815.png)
+![image-20220106150529815](img/image-20220106150529815.png)
 
 ##### Filter
 
@@ -520,13 +520,13 @@ addFilterMapping
 
 - com.caucho.server.webapp.WebApp#addFilterMapping
 
-![image-20220106162933997](resin-fileless-shell.assets/image-20220106162933997.png)
+![image-20220106162933997](img/image-20220106162933997.png)
 
 
 
 Filter 示例
 
-![image-20220106172008396](resin-fileless-shell.assets/image-20220106172008396.png)
+![image-20220106172008396](img/image-20220106172008396.png)
 
 
 
@@ -540,11 +540,11 @@ Filter 配置
 - _urlPattern
 - ...
 
-![image-20220106174307844](resin-fileless-shell.assets/image-20220106174307844.png)
+![image-20220106174307844](img/image-20220106174307844.png)
 
 
 
-![image-20220106174411748](resin-fileless-shell.assets/image-20220106174411748.png)
+![image-20220106174411748](img/image-20220106174411748.png)
 
 注入思路
 
@@ -588,7 +588,7 @@ response.getWriter().write("inject success");
 
 测试效果
 
-![image-20220106172127259](resin-fileless-shell.assets/image-20220106172127259.png)
+![image-20220106172127259](img/image-20220106172127259.png)
 
 
 
@@ -604,13 +604,13 @@ addServletMapping
 
 - com.caucho.server.webapp.WebApp#addFilterMapping
 
-![image-20220106171354262](resin-fileless-shell.assets/image-20220106171354262.png)
+![image-20220106171354262](img/image-20220106171354262.png)
 
 
 
 Servlet 示例
 
-![image-20220106164513466](resin-fileless-shell.assets/image-20220106164513466.png)
+![image-20220106164513466](img/image-20220106164513466.png)
 
 
 
@@ -623,7 +623,7 @@ Servlet 配置
 - _servletClass
 - ...
 
-![image-20220106173607433](resin-fileless-shell.assets/image-20220106173607433.png)
+![image-20220106173607433](img/image-20220106173607433.png)
 
 注入思路
 
@@ -663,7 +663,7 @@ response.getWriter().write("inject success");
 
 测试效果
 
-![image-20220106164158028](resin-fileless-shell.assets/image-20220106164158028.png)
+![image-20220106164158028](img/image-20220106164158028.png)
 
 
 
@@ -742,11 +742,11 @@ public class ResinFilterInject extends HttpServlet {
 
 web.xml
 
-![image-20220106180420193](resin-fileless-shell.assets/image-20220106180420193.png)
+![image-20220106180420193](img/image-20220106180420193.png)
 
 测试效果
 
-![image-20220106180350585](resin-fileless-shell.assets/image-20220106180350585.png)
+![image-20220106180350585](img/image-20220106180350585.png)
 
 
 

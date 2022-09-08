@@ -11,7 +11,7 @@
 ServletContext servletContext = request.getServletContext();
 ```
 
-![image-20211230174050842](readme.assets/image-20211230174050842.png)
+![image-20211230174050842](img/image-20211230174050842.png)
 
 #### Filter
 
@@ -77,7 +77,7 @@ web.xml
 
 Tested Version:	WildFly v18.0.0.Final
 
-![image-20211230161228102](readme.assets/image-20211230161228102.png)
+![image-20211230161228102](img/image-20211230161228102.png)
 
 
 
@@ -87,7 +87,7 @@ Tested Version:	WildFly v18.0.0.Final
 
 - https://www.tabnine.com/code/java/methods/io.undertow.servlet.api.DeploymentInfo/addFilter
 
-![image-20211230173612025](readme.assets/image-20211230173612025.png)
+![image-20211230173612025](img/image-20211230173612025.png)
 
 拎出来，该反射的用反射实现就成
 
@@ -219,7 +219,7 @@ public class FilterInject extends HttpServlet {
 
 测试效果如图
 
-![image-20211230181606604](readme.assets/image-20211230181606604.png)
+![image-20211230181606604](img/image-20211230181606604.png)
 
 注：实战场景也许有将evilFilter置首的需求，可使用
 

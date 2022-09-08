@@ -111,7 +111,7 @@ CVE-2020-26217-RCE.xml
 
 测试效果
 
-![image-20220124132538895](xstream.assets/image-20220124132538895.png)
+![image-20220124132538895](img/image-20220124132538895.png)
 
 #### 漏洞分析
 
@@ -182,7 +182,7 @@ protected void putCurrentEntryIntoMap(HierarchicalStreamReader reader, Unmarshal
 
 - `jdk.nashorn.internal.objects.NativeStrin`
 
-  ![image-20220124142438898](xstream.assets/image-20220124142438898.png)
+  ![image-20220124142438898](img/image-20220124142438898.png)
 
 获取hashcode时调用的方法为：`jdk.nashorn.internal.objects.NativeString#hashCode`
 
@@ -204,7 +204,7 @@ private String getStringValue() {
 
 - `com.sun.xml.internal.bind.v2.runtime.unmarshaller.Base64Data`
 
-  ![image-20220124142533040](xstream.assets/image-20220124142533040.png)
+  ![image-20220124142533040](img/image-20220124142533040.png)
 
 所以调用的toString()方法为：
 
@@ -364,7 +364,7 @@ public boolean filter(Object elt) {
 
 通过反射调用ProcessBuilder的start方法，达到命令执行的效果。
 
-![image-20220124142800151](xstream.assets/image-20220124142800151.png)
+![image-20220124142800151](img/image-20220124142800151.png)
 
 #### 漏洞修复
 
@@ -388,7 +388,7 @@ xstream.denyTypes(new Class[]{ java.lang.ProcessBuilder.class });
 
 再次验证，复现失败
 
-![image-20220124143512341](xstream.assets/image-20220124143512341.png)
+![image-20220124143512341](img/image-20220124143512341.png)
 
 抛出了异常：`ForbiddenClassException`，根据其报错的堆栈信息定位到
 
@@ -410,6 +410,6 @@ public Class realClass(String elementName) {
 
 下断点，获取到禁用的黑名单如下：
 
-![image-20220124144454107](xstream.assets/image-20220124144454107.png)
+![image-20220124144454107](img/image-20220124144454107.png)
 
 

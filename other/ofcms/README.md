@@ -12,11 +12,11 @@
 
 下载后解压，目录结构如下
 
-![Untitled](vulnerability-research.assets/Untitled.png)
+![Untitled](img/Untitled.png)
 
 右键pom.xml，用IDEA打开，然后等IDEA自动下载好需要的依赖包即可。
 
-![Untitled](vulnerability-research.assets/Untitled%201.png)
+![Untitled](img/Untitled%201.png)
 
 配置数据库
 
@@ -37,42 +37,42 @@
 
 - 初始化数据库
 
-  ![Untitled](vulnerability-research.assets/Untitled%202.png)
+  ![Untitled](img/Untitled%202.png)
 
   选择对应版本导入，勾选ofcms数据库
 
-  ![Untitled](vulnerability-research.assets/Untitled%203.png)
+  ![Untitled](img/Untitled%203.png)
 
   如图，即为导入成功
 
-  ![Untitled](vulnerability-research.assets/Untitled%204.png)
+  ![Untitled](img/Untitled%204.png)
 
 - 修改数据库配置文件
 
-  ![Untitled](vulnerability-research.assets/Untitled%205.png)
+  ![Untitled](img/Untitled%205.png)
 
 
 配置中间件-Tomcat
 
 - 配置context,选择要部署的war包
 
-  ![Untitled](vulnerability-research.assets/Untitled%207.png)
+  ![Untitled](img/Untitled%207.png)
 
 - 配置端口等设置
 
-  ![Untitled](vulnerability-research.assets/Untitled%208.png)
+  ![Untitled](img/Untitled%208.png)
 
 - Run
 
-  ![Untitled](vulnerability-research.assets/Untitled%209.png)
+  ![Untitled](img/Untitled%209.png)
 
 如图，成功安装
 
-![Untitled](vulnerability-research.assets/Untitled%2010.png)
+![Untitled](img/Untitled%2010.png)
 
 （附：可能出现的问题）
 
-![Untitled](vulnerability-research.assets/Untitled%2011.png)
+![Untitled](img/Untitled%2011.png)
 
 至此，环境搭建过程结束。
 
@@ -80,7 +80,7 @@
 
 了解待审计的系统的介绍以及使用的技术栈
 
-![Untitled](vulnerability-research.assets/Untitled%2012.png)
+![Untitled](img/Untitled%2012.png)
 
 然后根据所用技术栈选择优先挖掘的漏洞类型
 
@@ -99,36 +99,36 @@
 
 - [https://cve.circl.lu/search](https://cve.circl.lu/search)
 
-![Untitled](vulnerability-research.assets/Untitled%2013.png)
+![Untitled](img/Untitled%2013.png)
 
 #### CVE-2019-9615 后台 SQL注入
 
 漏洞描述
 
-![Untitled](vulnerability-research.assets/Untitled%2014.png)
+![Untitled](img/Untitled%2014.png)
 
 定位到漏洞点
 
 - com.ofsoft.cms.admin.controller.system.SystemGenerateController#create
 
-![Untitled](vulnerability-research.assets/Untitled%2015.png)
+![Untitled](img/Untitled%2015.png)
 
 跟进方法getPara()
 
 - com.jfinal.core.Controller#getPara()
   - 未作任何过滤
 
-![Untitled](vulnerability-research.assets/Untitled%2016.png)
+![Untitled](img/Untitled%2016.png)
 
 跟进方法update，到com.jfinal.plugin.activerecord.DbPro#update()建立数据库连接
 
-![Untitled](vulnerability-research.assets/Untitled%2017.png)
+![Untitled](img/Untitled%2017.png)
 
 跟进方法this.update();
 
 - com.jfinal.plugin.activerecord.DbPro#update()
 
-![Untitled](vulnerability-research.assets/Untitled%2018.png)
+![Untitled](img/Untitled%2018.png)
 
 至此处理流程结束，漏洞产生的原因也很清晰：
 
@@ -146,19 +146,19 @@ update of_cms_ad set ad_id = updatexml(1,concat(0x7e,(user())),0) where ad_id = 
 
 漏洞效果
 
-![Untitled](vulnerability-research.assets/Untitled%2019.png)
+![Untitled](img/Untitled%2019.png)
 
 #### CVE-2019-9610 后台 目录遍历
 
 漏洞描述
 
-![Untitled](vulnerability-research.assets/Untitled%2020.png)
+![Untitled](img/Untitled%2020.png)
 
 定位到漏洞点
 
 - com.ofsoft.cms.admin.controller.cms.TemplateController#getTemplates
 
-![Untitled](vulnerability-research.assets/Untitled%2021.png)
+![Untitled](img/Untitled%2021.png)
 
 通过方法getPara()获取参数
 
@@ -172,29 +172,29 @@ update of_cms_ad set ad_id = updatexml(1,concat(0x7e,(user())),0) where ad_id = 
 
 - com.ofsoft.cms.admin.controller.system.SystemUtile#getSiteTemplateResourcePath
 
-![Untitled](vulnerability-research.assets/Untitled%2022.png)
+![Untitled](img/Untitled%2022.png)
 
 回到之前的地方，通过getPara()获取参数file_name,判断文件是否存在
 
-![Untitled](vulnerability-research.assets/Untitled%2023.png)
+![Untitled](img/Untitled%2023.png)
 
 然后通过FileUtils.readString()读取文件内容
 
-![Untitled](vulnerability-research.assets/Untitled%2024.png)
+![Untitled](img/Untitled%2024.png)
 
 跟进
 
 - com.ofsoft.cms.core.uitle.FileUtils#readString
 
-![Untitled](vulnerability-research.assets/Untitled%2025.png)
+![Untitled](img/Untitled%2025.png)
 
 读取文件，并把文件内容写入缓存，设置编码
 
-![Untitled](vulnerability-research.assets/Untitled%2026.png)
+![Untitled](img/Untitled%2026.png)
 
 这里敏感字符进行了替换，并使用setAttr方法保存变量fileContent & editFile。
 
-![Untitled](vulnerability-research.assets/Untitled%2027.png)
+![Untitled](img/Untitled%2027.png)
 
 最后通过render()方法进行渲染并返回给客户端。
 
@@ -210,4 +210,4 @@ payload
 
 漏洞效果
 
-![Untitled](vulnerability-research.assets/Untitled%2028-1.png)
+![Untitled](img/Untitled%2028-1.png)

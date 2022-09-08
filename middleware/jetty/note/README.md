@@ -56,13 +56,13 @@ getConext.jsp
 %>
 ```
 
-![image-20211219004050344](fileless-shell.assets/image-20211219004050344.png)
+![image-20211219004050344](img/image-20211219004050344.png)
 
 此时需要获取到对应WebAppContext
 
-![image-20211219003844131](fileless-shell.assets/image-20211219003844131.png)
+![image-20211219003844131](img/image-20211219003844131.png)
 
-![image-20211219005907111](fileless-shell.assets/image-20211219005907111.png)
+![image-20211219005907111](img/image-20211219005907111.png)
 
 通过反射获取
 
@@ -72,7 +72,7 @@ field.setAccessible(true);
 Object webAppContext = field.get(namedObject.getObject());
 ```
 
-![image-20211219005439749](fileless-shell.assets/image-20211219005439749.png)
+![image-20211219005439749](img/image-20211219005439749.png)
 
 代码整合为
 
@@ -110,11 +110,11 @@ Object webAppContext = field.get(namedObject.getObject());
 
 测试效果：
 
-![image-20211219010628756](fileless-shell.assets/image-20211219010628756.png)
+![image-20211219010628756](img/image-20211219010628756.png)
 
 #### 通过currentThread获取Context
 
-![image-20211221160813357](fileless-shell.assets/image-20211221160813357.png)
+![image-20211221160813357](img/image-20211221160813357.png)
 
 ```java
 ClassLoader webAppClassLoader= Thread.currentThread().getContextClassLoader();
@@ -179,7 +179,7 @@ web.xml配置如下
 
 测试效果如图
 
-![image-20211216233502724](fileless-shell.assets/image-20211216233502724.png)
+![image-20211216233502724](img/image-20211216233502724.png)
 
 ##### Filter Cmd
 
@@ -237,13 +237,13 @@ web.xml配置如下
 
 测试效果如图
 
-![image-20211216234712662](fileless-shell.assets/image-20211216234712662.png)
+![image-20211216234712662](img/image-20211216234712662.png)
 
 #### 动态添加 Filter(基于addFilter API)
 
 ##### _servletHandler
 
-![image-20211219011755109](fileless-shell.assets/image-20211219011755109.png)
+![image-20211219011755109](img/image-20211219011755109.png)
 
 - 通过Mbean的方式获取context后，context 获取其父类 ServletContextHandler的ServletHandler类型的私有变量_servletHandler，它实现了Servlet规范中Filter、Servlet的基本处理逻辑(重点)。
 
@@ -272,12 +272,12 @@ Class evilFilter = (Class) defineClass.invoke(contextClassLoader, bytes, 0, byte
 
 ##### newFilterHolder
 
-![image-20211219012432285](fileless-shell.assets/image-20211219012432285.png)
+![image-20211219012432285](img/image-20211219012432285.png)
 
 - 参数 source
   - 标识FilterHolder的来源，此处为JAVAX_API
 
-![image-20211219013056371](fileless-shell.assets/image-20211219013056371.png)
+![image-20211219013056371](img/image-20211219013056371.png)
 
 反射调用创建FilterHolder
 
@@ -302,7 +302,7 @@ setFilter.invoke(filterHolder, evilFilter.newInstance());
 
 ##### addFilter
 
-![image-20211219015429473](fileless-shell.assets/image-20211219015429473.png)
+![image-20211219015429473](img/image-20211219015429473.png)
 
 ```java
 Method addFilter = servletHandler.getClass().getMethod("addFilter", filterHolder.getClass());
@@ -313,7 +313,7 @@ addFilter.invoke(servletHandler, filterHolder);
 
 - 设置路径映射等信息
 
-![image-20211219020225013](fileless-shell.assets/image-20211219020225013.png)
+![image-20211219020225013](img/image-20211219020225013.png)
 
 ```java
 Class FilterMapping = classLoader.loadClass("org.eclipse.jetty.servlet.FilterMapping");
@@ -400,7 +400,7 @@ prependFilterMapping.invoke(servletHandler, filterMapping);
 
 测试效果
 
-![image-20211219024758925](fileless-shell.assets/image-20211219024758925.png)
+![image-20211219024758925](img/image-20211219024758925.png)
 
 
 #### 适配Jetty v6.x/7.x/8.x/9.x
@@ -455,17 +455,17 @@ prependFilterMapping.invoke(servletHandler, filterMapping);
 
 ##### 6.x (6.1.26)
 
-![image-20211223172132330](fileless-shell.assets/image-20211223172132330.png)
+![image-20211223172132330](img/image-20211223172132330.png)
 
 ##### 7.x (7.5.0 )
 
-![image-20211223170727420](fileless-shell.assets/image-20211223170727420.png)
+![image-20211223170727420](img/image-20211223170727420.png)
 
 ##### 8.x (8.2.0)
 
-![image-20211223170921323](fileless-shell.assets/image-20211223170921323.png)
+![image-20211223170921323](img/image-20211223170921323.png)
 
 ##### 9.x (9.4.43)
 
-![image-20211223171052049](fileless-shell.assets/image-20211223171052049.png)
+![image-20211223171052049](img/image-20211223171052049.png)
 

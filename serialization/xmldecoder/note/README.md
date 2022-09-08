@@ -61,7 +61,7 @@ rce.xml
 
 测试效果
 
-![image-20220125185557645](xmldecoder.assets/image-20220125185557645.png)
+![image-20220125185557645](img/image-20220125185557645.png)
 
 ### 漏洞分析
 
@@ -85,7 +85,7 @@ public void serialize(){
 
 测试效果
 
- ![image-20220125184005984](xmldecoder.assets/image-20220125184005984.png)
+ ![image-20220125184005984](img/image-20220125184005984.png)
 
 ##### 反序列化 readObject()
 
@@ -118,7 +118,7 @@ public void deserialize() throws FileNotFoundException {
 
 测试效果
 
- ![image-20220125184951948](xmldecoder.assets/image-20220125184951948.png)
+ ![image-20220125184951948](img/image-20220125184951948.png)
 
 
 
@@ -216,35 +216,35 @@ main:11, PayloadRunner (Deserialization.XMLDecoder)
 
 - com.sun.org.apache.xerces.internal.parsers.XML11Configuration#parse()
 
-![image-20220125191418857](xmldecoder.assets/image-20220125191418857.png)
+![image-20220125191418857](img/image-20220125191418857.png)
 
 经过一些不关心的配置后继续调用this.parse()方法
 
 - com.sun.org.apache.xerces.internal.parsers.XML11Configuration#parse(boolean)
 
-![image-20220125191846714](xmldecoder.assets/image-20220125191846714.png)
+![image-20220125191846714](img/image-20220125191846714.png)
 
 调用处理XML数据的方法：fCurrentScanner.scanDocument()
 
 - com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl#scanDocument
 
-![image-20220125192200312](xmldecoder.assets/image-20220125192200312.png)
+![image-20220125192200312](img/image-20220125192200312.png)
 
 当处理到 END_ELEMENT 时, 调用 fDriver.next()
 
 - 此时`fDriver`  为 `FragmentContentDriver`
 
-   ![image-20220125192700432](xmldecoder.assets/image-20220125192700432.png)
+   ![image-20220125192700432](img/image-20220125192700432.png)
 
 - com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.FragmentContentDriver#next
 
-![image-20220125193006423](xmldecoder.assets/image-20220125193006423.png)
+![image-20220125193006423](img/image-20220125193006423.png)
 
 解析到SCANNER_STATE_END_ELEMENT_TAG时会调用scanEndElement()
 
 - com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl#scanEndElement
 
-![image-20220125193152552](xmldecoder.assets/image-20220125193152552.png)
+![image-20220125193152552](img/image-20220125193152552.png)
 
 经过以下调用后执行到
 
@@ -268,19 +268,19 @@ public Object getValue() throws Exception {
 
 - 当前参数
 
- ![image-20220125194311588](xmldecoder.assets/image-20220125194311588.png)
+ ![image-20220125194311588](img/image-20220125194311588.png)
 
 经过以下调用后
 
-![image-20220125195509031](xmldecoder.assets/image-20220125195509031.png)
+![image-20220125195509031](img/image-20220125195509031.png)
 
 执行到 MethodUtil.invoke
 
 - 反射执行ProcessBuilder.start()
 
-![image-20220125195638810](xmldecoder.assets/image-20220125195638810.png)
+![image-20220125195638810](img/image-20220125195638810.png)
 
 测试效果
 
-![image-20220125195726476](xmldecoder.assets/image-20220125195726476.png)
+![image-20220125195726476](img/image-20220125195726476.png)
 
