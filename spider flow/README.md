@@ -12,11 +12,11 @@ Nashorn是于Java 8中用于取代Rhino（Java 6，Java 7）的JavaScript引擎�
 
 > 实现如何用Nashorn在Java中执行JS代码即可
 
-![image-20220102181550828](readme.assets/image-20220102181550828.png)
+![image-20220102181550828](img/image-20220102181550828.png)
 
 测试效果
 
-![image-20220102181612329](readme.assets/image-20220102181612329.png)
+![image-20220102181612329](img/image-20220102181612329.png)
 
 ##### RCE 
 
@@ -26,7 +26,7 @@ Java对象的` type()`函数将Java类型导入脚本中。
 
 示例
 
-![image-20220102182241321](readme.assets/image-20220102182241321.png)
+![image-20220102182241321](img/image-20220102182241321.png)
 
 那么如何弹计算器的呢？
 
@@ -47,7 +47,7 @@ class JsFromJava{
 }
 ```
 
-![image-20220102182630383](readme.assets/image-20220102182630383.png)
+![image-20220102182630383](img/image-20220102182630383.png)
 
 #### 审计思路
 
@@ -57,17 +57,17 @@ class JsFromJava{
 
 - 全局搜索`.eval(`
 
-![image-20220102183719108](readme.assets/image-20220102183719108.png)
+![image-20220102183719108](img/image-20220102183719108.png)
 
 - 跟进
 
   - org.spiderflow.core.script.ScriptManager#registerFunction
 
-    ![image-20220102184652005](readme.assets/image-20220102184652005.png)
+    ![image-20220102184652005](img/image-20220102184652005.png)
 
   - org.spiderflow.core.script.ScriptManager#concatScript
 
-    ![image-20220102184309834](readme.assets/image-20220102184309834.png)
+    ![image-20220102184309834](img/image-20220102184309834.png)
 
 - 构造payload,闭合一下
 
@@ -81,6 +81,6 @@ class JsFromJava{
 
   复现效果：
 
-  ![image-20220102191038717](readme.assets/image-20220102191038717.png)
+  ![image-20220102191038717](img/image-20220102191038717.png)
 
   
