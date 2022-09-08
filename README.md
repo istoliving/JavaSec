@@ -1,14 +1,13 @@
-> Focus on Java Security since November 1, 2021 👣`
-
-
----
 ```shell
+# 2021/11/01
+Focus on Java Security since November 1, 2021 👣
+
 # 2022/09/08
 1年的学习对Java安全有了大概的认知
 目前工作的大部分重心也还是这个方向
 梳理一下之前的知识体系方便回炉重造
 ```
-
+---
 - [metacode](https://github.com/pen4uin/awesome-java-security/tree/main/metacode) 
   - vulnerability `常见漏洞`
   - rasp
