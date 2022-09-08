@@ -1,4 +1,4 @@
-- 2022/09/07 `a nice attck chain`
+- 2022/09/07 `a nice attack chain`
   - [CVE-2022-36923 ManageEngine OpManager getUserAPIKey Authentication Bypass](https://y4er.com/posts/cve-2022-36923-manageengine-opmanager-getuserapikey-authentication-bypass/)
   - [ZOHO ManageEngine OpManager 两个RCE](https://da22le.github.io/zoho-manageengine-opmanager-%E4%B8%A4%E4%B8%AArce/)
 
