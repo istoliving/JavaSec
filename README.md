@@ -63,7 +63,7 @@
   - [SnakeYaml](https://github.com/pen4uin/awesome-java-security/tree/main/serialization/snakeyaml)
   - [XMLDecoder](https://github.com/pen4uin/awesome-java-security/tree/main/serialization/xmldecoder)
   - [Sstream](https://github.com/pen4uin/awesome-java-security/tree/main/serialization/xstream)
-- [Static Analysis](https://github.com/pen4uin/awesome-java-security/tree/main/static_analysis) `静态分析`
+- [Static Analysis](https://github.com/pen4uin/awesome-java-security/tree/main/static%20analysis) `静态分析`
   - CodeQL
   - Tabby
 - [Other application](https://github.com/pen4uin/awesome-java-security/tree/main/other) `用来学习代码审计的CMS和开源项目`
