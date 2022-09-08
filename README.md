@@ -4,7 +4,7 @@
 ---
 ```shell
 # 2022/09/08
-这近一年的学习对Java安全已经有了大概的认知和了解，毕业后的工作大部分重心也仍在这个方向，所以打算梳理一下之前的的知识体系，回炉重造。
+近一年的学习对Java安全已经有了大概的认知，目前工作的大部分重心也还是这个方向，打算梳理一下之前的知识体系后回炉重造和深入学习。
 ```
 
 - [metacode](https://github.com/pen4uin/awesome-java-security/tree/main/metacode) 
