@@ -9,7 +9,7 @@
 - [ ] Expression Language 
 - [ ] Template Engine 
 
----
+
 
 **0x02 Application**
 - [ ] Atlassian
@@ -21,12 +21,12 @@
 - [ ] Landray 
 
 
----
+
 
 **0x03 Third-party Component**
 - [ ] UrlRewriteFilter
 
----
+
 
 **0x04 Framework**
 - [ ] Log          
@@ -41,7 +41,7 @@
   - [ ] Struts2
   - [ ] RuoYi
 
----
+
 
 **0x05 Middleware** 
 
@@ -52,7 +52,6 @@
 - [ ] WebLogic
 - [ ] Wildfly
 
----
 
 **0x06 Fundamental Mechanism** 
 - [ ] Serialization
@@ -63,7 +62,6 @@
 - [ ] DataBinding
   - [ ] Spring
 
----
 
 **0x07 Code Analysis**
 - [ ] Static Analysis Tools
