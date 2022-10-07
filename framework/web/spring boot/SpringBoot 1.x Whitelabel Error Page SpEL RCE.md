@@ -1,20 +1,3 @@
-前置基础
----
-
-- SpringBoot
-- SpEL
-
-
-相关漏洞
----
-
-### SpringBoot 1.x Whitelabel Error Page SpEL RCE
-> 2022/3/17
-
-参考资料
-- https://github.com/LandGrey/SpringBootVulExploit/
-- https://github.com/spring-projects/spring-boot/issues/4763
-
 
 #### 漏洞复现
 
