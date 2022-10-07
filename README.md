@@ -29,12 +29,13 @@
 
 
 **0x04 Framework**
-- [ ] Log          
+- [ ] Log 
+  - [x] Log4j1
 - [ ] Microservice
 - [ ] RPC
 - [ ] Security     
   - [x] Shiro
-  - [ ] Spring Security
+  - [x] Spring Security
 - [ ] Web
   - [ ] Spring MVC
   - [ ] Spring Webflux
