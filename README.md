@@ -64,13 +64,6 @@
   - [ ] Spring
 
 
-**0x07 Code Analysis**
-- [ ] Static Analysis Tools
-  - [ ] CodeQL
-  - [ ] Tabby
-
-  
-
 
 
 
