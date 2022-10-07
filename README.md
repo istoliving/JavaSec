@@ -1,96 +1,75 @@
 > Focus on Java Security since November 1, 2021 👣
 
----
-1、[Metacode](https://github.com/pen4uin/awesome-java-security/tree/main/metacode)
-- expression language 
-  - ognl
-  - spel
-- template engine 
-  - freemarker
-  - pebble
-  - thymeleaf
-  - velocity
-- vulnerability 
-  - code execution
-  - command execution
-  - zip slip
-  - xxe
----
 
-2、[Application](https://github.com/pen4uin/awesome-java-security/tree/main/application)
-- atlassian
-- f5
-- vmware
-- zimbra
-- finereport 
-- weaver 
-- yonyou 
-- landray 
-- h3c 
----
+### 0x01 JavaEE
+- Java Servlet
+- Java Server Pages (JSP)
+- JavaServer Faces (JSF)
+- Expression Language 
+  - OGNL
+  - SpEL
+- Template Engine 
+  - Freemarker
+  - Pebble
+  - Thymeleaf
+  - Velocity
 
-3、[Component](https://github.com/pen4uin/awesome-java-security/tree/main/component)
-- apache axis
-- apache poi
-- urlrewritefilter
----
+### 0x02 Application
+- Apache
+- Atlassian
+  - Confluence
+- VMware
+- FanRuan
+- Weaver 
+- Yonyou 
+- Landray 
+- H3C 
 
-4、[Development](https://github.com/pen4uin/awesome-java-security/tree/main/development/)
-- godzilla
 
----
+### 0x03 Third-party Component
+- UrlRewriteFilter
 
-5、[Framework](https://github.com/pen4uin/awesome-java-security/tree/main/framework)
-- log          
-- microservice 
-  - flink
-  - spring cloud
-- rpc
-  - dubbo
-- security     
-  - shiro
-  - spring security
-- web
-  - dwr
-  - spring
-  - struts2
-  - ruoyi 
----
 
-6、[Middleware](https://github.com/pen4uin/awesome-java-security/tree/main/middleware) 
-- jboss
-- jetty
-- resin
-- apache tomcat
-- weblogic
-- wildfly
----
+### 0x04 Framework
+- Log          
+- Microservice 
+  - Flink
+  - Spring Cloud
+- RPC
+  - Dubbo
+- Security     
+  - Shiro
+  - Spring Security
+- Web
+  - Spring MVC
+  - Spring Webflux
+  - Struts2
+  - RuoYi
 
-7、[Serialization](https://github.com/pen4uin/awesome-java-security/tree/main/serialization) 
-- [fastjson](https://github.com/pen4uin/awesome-java-security/tree/main/serialization/fastjson)
-- [jackson](https://github.com/pen4uin/awesome-java-security/tree/main/serialization/jackson-databind)
-- [snakeyaml](https://github.com/pen4uin/awesome-java-security/tree/main/serialization/snakeyaml)
-- [xmldecoder](https://github.com/pen4uin/awesome-java-security/tree/main/serialization/xmldecoder)
-- [xstream](https://github.com/pen4uin/awesome-java-security/tree/main/serialization/xstream)
+### 0x05 Middleware 
+- Jboss
+- Jetty
+- Resin
+- Tomcat
+- WebLogic
+- Wildfly
 
----
+### 0x06 Fundamental Mechanism 
+- Serialization
+  - Fastjson
+  - XMLDecoder
+- DataBinding
 
-8、[Static Analysis](https://github.com/pen4uin/awesome-java-security/tree/main/static%20analysis) 
-- codeql
-- tabby
 
----
+### 0x07 Code Analysis
+- Static Analysis
+  - CodeQL
+  - Tabby
 
-9、[Other Application](https://github.com/pen4uin/awesome-java-security/tree/main/other) 
-- datagear
-- indexu
-- jeecms
-- metersphere
-- ofcms
-- spider-flow
 
----
-10、[Memo](https://github.com/pen4uin/awesome-java-security/tree/main/memo) 
+
+### 0x08 Other Application 
+
 
 
 

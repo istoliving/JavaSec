@@ -1,6 +1,4 @@
-相关漏洞
----
+历史漏洞
 
-### ZipSlip -> RCE
+- [ ] ZipSlip -> RCE
 
-- https://swarm.ptsecurity.com/vulnerabilities-in-mcafee-epolicy-orchestrator/
