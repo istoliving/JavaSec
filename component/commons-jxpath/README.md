@@ -6,7 +6,7 @@ Using the standard extension functions, you can call methods on objects, static 
 and create objects using any constructors. All class names should be fully qualified.
 ```
 
-![image](https://user-images.githubusercontent.com/55024146/194762870-fdffa2f5-4ce2-4f0f-a48f-79e8dfed7f17.png)
+<img width="961" alt="image" src="https://user-images.githubusercontent.com/55024146/194763215-9141ff15-febd-43d6-a96e-cc6d362845d5.png">
 
 
 RCE = commons-jxpath + spring-context-support
