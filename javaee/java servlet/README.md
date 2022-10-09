@@ -1,5 +1,5 @@
-前置基础
----
+> attack vector
 
-经典的权限绕过姿势：getRequestURI() + getServletPath()
-- https://blog.viettelcybersecurity.com/cve-2022-0540-authentication-bypass-in-seraph/
+- 权限绕过: getRequestURI() + getServletPath()
+- 权限绕过: RequestDispatcher methods
+- 条件竞争
