@@ -22,8 +22,10 @@ Yonyou
 Landray 
 ```
 
-Third-party Component
+Component
 ```
+Apache Commons JXPath
+Apache Batik
 UrlRewriteFilter
 ```
 
@@ -47,10 +49,11 @@ WebLogic
 Wildfly
 ```
 
-Fundamental Mechanism
+Mechanism
 ```
 Serialization
 DataBinding
+BeanValidation
 ```
 
 
