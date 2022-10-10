@@ -1,0 +1,1 @@
+- [0x02 表达式语言 OGNL](https://pen4uin.github.io/post/22-10-03-confluence-el-injection-via-ognl/#0x02-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80-ognl)
