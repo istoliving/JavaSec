@@ -1,5 +1,6 @@
 历史漏洞
 
+- [x] CVE-2022-31680 VMware vCenter PSC 反序列化
 - [ ] CVE-2021-44228 VMware Product RCE via Log4Shell
 - [ ] CVE-2021-22017 VMware vCenter rhttpproxy Bypass
 - [ ] CVE-2021-22005 VMware vCenter 文件上传
