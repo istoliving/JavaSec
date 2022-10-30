@@ -8,3 +8,10 @@ https://www.javassist.org/tutorial/tutorial.html
 应用场景:
 
 由内存马模板文件动态生成自定义密码/密钥/请求头等的 class
+
+---
+
+问题记录
+
+01 javassist.NotFoundException
+- https://blog.csdn.net/paincupid/article/details/51175244 
